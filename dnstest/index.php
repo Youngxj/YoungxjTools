@@ -1,5 +1,5 @@
 <?php
-$id="23";
+$id="21";
 include '../header.php';?>
 <div class="container clearfix">
   <div class="row row-xs">
@@ -75,5 +75,5 @@ include '../header.php';?>
   </div>
 </div>
 </div>
-<script type="text/javascript" src="dnstest.php?rand=<?php echo md5(md5((int)(time()/10)).encryption(1));?>&_=<?php echo randomFloat(1, 99999999);?>"></script>
+<script type="text/javascript" src="dnstest.php"></script>
 <?php include '../footer.php';?>

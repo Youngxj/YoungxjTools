@@ -60,5 +60,5 @@ include '../header.php';?>
 	</div>
 </div>
 <?php include '../more.php';more_ip('portblast');?>
-<script type="text/javascript" src="portblast.php?rand=<?php echo md5(md5((int)(time()/10)).encryption(1));?>&_=<?php echo randomFloat(1, 99999999);?>"></script>
+<script type="text/javascript" src="portblast.php"></script>
 <?php include '../footer.php';?>

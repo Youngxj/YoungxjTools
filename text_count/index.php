@@ -1,5 +1,5 @@
 <?php
-$id="36";
+$id="32";
 include '../header.php';
 $string = <<<html
 /*   适用于word一键排版和统计字数        */

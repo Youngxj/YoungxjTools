@@ -5,10 +5,7 @@
 * @date     2018-04-18
 * @url      http://www.youngxj.cn
 */
-<?php
-include '../function/function.php';
-encryption();
-?>
+
 function getPinyin(){
 		var value = document.getElementById('textareaCode_zw').value;
 		var type = document.querySelector('[name="pinyin_type"]:checked').value;

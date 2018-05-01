@@ -115,7 +115,7 @@ if($id){
   <meta name="Author" Content="Youngxj|杨小杰,admin@youngxj.com">
   <meta name="Copyright" Content="本页版权归Youngxj所有.All Rights Reserved">
   <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
-  <link rel="stylesheet" type="text/css" href="/css/font-awesome-4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="/font-awesome-4.7.0/css/font-awesome.min.css">
   <script src="/js/jquery.min.js"></script>
   <script src="/js/clipboard.min.js"></script>
   <script type="text/javascript" src="/js/bootstrap.min.js"></script>

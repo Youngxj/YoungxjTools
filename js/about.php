@@ -5,10 +5,7 @@
 * @date     2018-04-10
 * @url      http://www.youngxj.cn
 */
-<?php
-include '../function/function.php';
-encryption();
-?>
+
 $(function () {
     /*$("#name").focus();获取焦点*/
     $("#name").keydown(function (event) {

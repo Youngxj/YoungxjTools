@@ -1,9 +1,11 @@
 <?php
 error_reporting(0);
 include 'function.base.php';
+/*redis 开始*/
 $redis = new Redis(); //初始化
 $redis->connect('127.0.0.1', 6379);    //连接Redis
 $key = real_ip(); //将用户访问ip设置为key
+/*redis 结束*/
 
 function error(){
   //输出为error
@@ -24,6 +26,7 @@ if (getParam('name')&&getParam('email')&&getParam('content')&&getParam('check')&
     echoJson(json_encode($arr));
   }
   //$sql = "INSERT INTO tools_talk (name,emails,content,times)VALUES ('".$name."', '".$email."','".$content."','".$date."');";
+  //redis开始
   if($redis->exists($key)){  //检测key是否存在
     $redis->incr($key);  //将value数字增一
     if($redis->get($key) >= 1){  //取出value并判断是否大于或等于一
@@ -36,6 +39,7 @@ if (getParam('name')&&getParam('email')&&getParam('content')&&getParam('check')&
     $redis->set($key,1); //首次访问+1
     $redis->expire($key,60);  //设置过期时间三秒
   }
+  //redis结束
   $newrow = array(
     'name' => $name,
     'content' => $content,

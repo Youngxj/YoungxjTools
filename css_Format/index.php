@@ -1,5 +1,5 @@
 <?php
-$id="32";
+$id="28";
 include '../header.php';
 $string = <<<html
 /*   美化：格式化代码，使之容易阅读	*/

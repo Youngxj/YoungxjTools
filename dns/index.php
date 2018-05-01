@@ -44,5 +44,5 @@ include '../header.php';?>
 	</div>
 </div>
 <?php include '../more.php';more('dns');?>
-<script type="text/javascript" src="dns.php?rand=<?php echo md5(md5((int)(time()/10)).encryption(1));?>&_=<?php echo randomFloat(1, 99999999);?>"></script>
+<script type="text/javascript" src="dns.php"></script>
 <?php include '../footer.php';?>

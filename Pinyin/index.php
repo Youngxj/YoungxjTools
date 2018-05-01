@@ -1,7 +1,6 @@
 <?php
-$id = '29';
+$id = '26';
 include '../header.php';
-
 ?>
 
 
@@ -44,6 +43,6 @@ include '../header.php';
 <audio id="voice" src=""></audio>
 <script type="text/javascript" src="dict/pinyin_dict_withtone.js"></script>
 	<script type="text/javascript" src="pinyinUtil.js"></script>
-<script type="text/javascript" src="py.php?rand=<?php echo md5(md5((int)(time()/10)).encryption(1));?>&_=<?php echo randomFloat(1, 99999999);?>"></script>
+<script type="text/javascript" src="py.php"></script>
 
 <?php include '../footer.php';?>

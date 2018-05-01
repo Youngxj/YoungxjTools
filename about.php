@@ -121,5 +121,5 @@ $talks=$sp->findall(array('state'=>'1'),"id desc","*","{$fys},{$pagenum}");
   </div>
 </div>
 
-<script type="text/javascript" src="/js/about.php?rand=<?php echo md5(md5((int)(time()/10)).encryption(1));?>&_=<?php echo randomFloat(1, 99999999);?>"></script>
+<script type="text/javascript" src="/js/about.php"></script>
 <?php include './footer.php';?>

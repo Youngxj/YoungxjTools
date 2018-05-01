@@ -5,10 +5,7 @@
 * @date     2018-03-24
 * @url      http://www.youngxj.cn
 */
-<?php
-include '../function/function.php';
-encryption();
-?>
+
 var mixedMode = {
 name: "htmlmixed",
 scriptTypes: [{matches: /\/x-handlebars-template|\/x-mustache/i,

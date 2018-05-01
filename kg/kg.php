@@ -5,10 +5,7 @@
 * @date     2018-03-24
 * @url      http://www.youngxj.cn
 */
-<?php
-include '../function/function.php';
-encryption();
-?>
+
 control('请输入全民K歌地址：');
 $("#btn_state").click(function(){
 	if ($('.form-control').val() == "") {layer.alert('你是不是忘记填内容了？');return false;}

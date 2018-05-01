@@ -1,5 +1,5 @@
 <?php
-$id="19";
+$id="18";
 include '../header.php';?>
 <div class="container clearfix">
   <div class="row row-xs">
@@ -27,5 +27,5 @@ include '../header.php';?>
   
 </div>
 <?php include '../more.php';more('whois');?>
-<script type="text/javascript" src="whois.php?rand=<?php echo md5(md5((int)(time()/10)).encryption(1));?>&_=<?php echo randomFloat(1, 99999999);?>"></script>
+<script type="text/javascript" src="whois.php"></script>
 <?php include '../footer.php';?>

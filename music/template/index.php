@@ -3,7 +3,7 @@ if (!defined('MC_CORE')) {
     header("Location: /");
     exit();
 }
-$id="28";
+$id="25";
 include '../header.php';?>
 <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">

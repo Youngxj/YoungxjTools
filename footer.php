@@ -14,7 +14,7 @@
     <a rel="noopener noreferrer" target="_blank" class="btn qq-qun copy-btn js-tip" title="QQ群" href="//shang.qq.com/wpa/qunwpa?idkey=3ce04929f3f5c27b3fc20a892fefd8bfa9a2849f6e33fb4c49b1f1ab16991ff5" original-title="QQ群: 774688083"><i class="fa fa-qq"></i></a>
     <a rel="noopener noreferrer" target="_blank" class="btn weibo js-tip" href="http://weibo.com/youngxj0" title="微博"><i class="fa fa-weibo"></i></a>
     <a rel="noopener noreferrer" target="_blank" class="btn weibo js-tip" href="javascript:temp();" title="切换主题"><i class="fa fa-television"></i></a>
-    <a rel="noopener noreferrer" target="_blank" class="btn github js-tip" href="https://github.com/Youngxj/YoungxjTools"><i class="fa fa-github-alt"></i></a>
+    <a rel="noopener noreferrer" target="_blank" class="btn github js-tip" href="https://gitee.com/youngxj0/YoungxjTools"><i class="fa fa-github-alt"></i></a>
     <a class="btn gotop js-tip" href="javascript:gotop();" title="返回顶部" id="gotop"><i class="fa fa-arrow-up"></i></a>
 </div>
 

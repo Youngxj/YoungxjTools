@@ -5,10 +5,7 @@
 * @date     <?php echo date("Y-m-d");?>
 * @url      http://www.youngxj.cn
 */
-<?php
-include '../function/function.php';
-encryption();
-?>
+
 $(document).ready(function() {
 	$("input[type='file']").change(function(e) {
 		images_upload(this.files)

@@ -37,5 +37,5 @@ include '../header.php';?>
 	</div>
 </div>
 <script type="text/javascript" src="/js/qrcode.js"></script>
-<script type="text/javascript" src="qrcode.php?rand=<?php echo md5(md5((int)(time()/10)).encryption(1));?>&_=<?php echo randomFloat(1, 99999999);?>"></script>
+<script type="text/javascript" src="qrcode.php"></script>
 <?php include '../footer.php';?>

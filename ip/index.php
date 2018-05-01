@@ -3,7 +3,6 @@ $id="5";
 include '../header.php';?>
 <?php
 $ip = real_ip();
-//$ip = '123.207.124.36';
 $url = "https://api.yum6.cn/ip.php?ip=".$ip;
 $json_string = json_decode(file_get_contents($url),1);
 $url_tb = "https://api.yum6.cn/ip.php?type=tb&ip=".$ip;
@@ -34,5 +33,5 @@ $content = '<table class="table table-bordered"><tbody><tr><th scope="row">IP地
 	</div>
 </div>
 <?php include '../more.php';more_ip('ip');?>
-<script type="text/javascript" src="ip.php?rand=<?php echo md5(md5((int)(time()/10)).encryption(1));?>&_=<?php echo randomFloat(1, 99999999);?>"></script>
+<script type="text/javascript" src="ip.php"></script>
 <?php include '../footer.php';?>

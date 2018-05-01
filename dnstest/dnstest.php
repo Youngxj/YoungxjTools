@@ -5,10 +5,7 @@
 * @date     2018-03-24
 * @url      http://www.youngxj.cn
 */
-<?php
-include '../function/function.php';
-encryption();
-?>
+
 var i, a = document.getElementsByTagName("head").item(0);
 b = document.createElement("script");
 b.setAttribute("src", "http://only-156053-116-7-220-44.nstool.netease.com/info.js");

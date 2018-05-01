@@ -5,10 +5,7 @@
 * @date     2018-03-24
 * @url      http://www.youngxj.cn
 */
-<?php
-include '../function/function.php';
-encryption();
-?>
+
 control('请输入内容：');
 $('#form-control').bind('input propertychange', function () {
 	if($('.form-control').val()==''){$('.form-controls').hide();}else{

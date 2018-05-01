@@ -5,10 +5,7 @@
 * @date     2018-03-24
 * @url      http://www.youngxj.cn
 */
-<?php
-include '../function/function.php';
-encryption();
-?>
+
  
 function urlEncode(String) {
     return encodeURIComponent(String).replace(/'/g,"%27").replace(/"/g,"%22");	

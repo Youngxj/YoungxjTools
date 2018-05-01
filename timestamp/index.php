@@ -33,5 +33,5 @@ include '../header.php';?>
 		</div>
 	</div>
 </div>
-<script type="text/javascript" src="timestamp.php?rand=<?php echo md5(md5((int)(time()/10)).encryption(1));?>&_=<?php echo randomFloat(1, 99999999);?>"></script>
+<script type="text/javascript" src="timestamp.php"></script>
 <?php include '../footer.php';?>

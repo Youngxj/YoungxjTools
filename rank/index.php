@@ -1,5 +1,5 @@
 <?php
-$id="30";
+$id="27";
 include '../header.php';?>
 
 <div class="container clearfix">
@@ -26,5 +26,5 @@ include '../header.php';?>
 	</div>
 </div>
 <?php include '../more.php';more('rank');?>
-<script type="text/javascript" src="rank.php?rand=<?php echo md5(md5((int)(time()/10)).encryption(1));?>&_=<?php echo randomFloat(1, 99999999);?>"></script>
+<script type="text/javascript" src="rank.php"></script>
 <?php include '../footer.php';?>

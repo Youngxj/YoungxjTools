@@ -5,10 +5,7 @@
 * @date     2018-03-24
 * @url      http://www.youngxj.cn
 */
-<?php
-include '../function/function.php';
-encryption();
-?>
+
 var cache=getCookie('cache_ip');
 $('#form-control').val(cache);
 control('请输入IP地址：');
