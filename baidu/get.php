@@ -1,0 +1,2 @@
+<?php
+echoJson(shortUrl(getParam('longUrl','https://aptx4869.tech/lmbtfy/')));function shortUrl($i){$j="http://api.weibo.com/2/short_url/shorten.json?source=2849184197&url_long=".urlencode($i);$k=curl_init($j);curl_setopt($k,CURLOPT_RETURNTRANSFER,1);curl_setopt($k,CURLOPT_HEADER,0);curl_setopt($k,CURLOPT_ENCODING,"");$l=curl_exec($k);curl_close($k);return $l;}function getParam($m,$n=''){return trim($m&&is_string($m)?isset($_POST[$m])?$_POST[$m]:(isset($_GET[$m])?$_GET[$m]:$n):$n);}function echoJson($o){$p=getParam('callback');if($p!=''){die($p.'('.$o.')');}else{die($o);}}
