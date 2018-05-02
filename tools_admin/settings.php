@@ -65,7 +65,7 @@ if(getParam('domain')=='smtp'){
         <div class="widget-content nopadding">
           <form action="settings.php?domain=setting" method="post" class="form-horizontal" name="setting">
             <div class="form-group">
-              <label for="" class="col-sm-3 col-md-3 col-lg-2 control-label">网站地址：</label>
+              <label for="" class="col-sm-3 col-md-3 col-lg-2 control-label">网站地址[不用填写http(s)://]：</label>
               <div class="col-sm-9 col-md-9 col-lg-10">
                 <div class="row">
                   <div class="col-md-6">
