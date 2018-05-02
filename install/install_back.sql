@@ -1,27 +1,3 @@
--- phpMyAdmin SQL Dump
--- version 4.4.15.10
--- https://www.phpmyadmin.net
---
--- Host: localhost
--- Generation Time: 2018-05-01 11:08:28
--- 服务器版本： 5.6.39-log
--- PHP Version: 5.6.34
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
---
--- Database: `tools_test`
---
-
--- --------------------------------------------------------
-
 --
 -- 表的结构 `tools_links`
 --
@@ -34,7 +10,7 @@ CREATE TABLE IF NOT EXISTS `tools_links` (
   `type` int(11) NOT NULL,
   `state` int(11) NOT NULL,
   `priority` int(11) NOT NULL
-)  AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ;
 
 --
 -- 转存表中的数据 `tools_links`
@@ -64,7 +40,7 @@ CREATE TABLE IF NOT EXISTS `tools_list` (
   `id` int(11) NOT NULL,
   `tools_number` int(11) NOT NULL,
   `tools_love` int(11) NOT NULL
-)  AUTO_INCREMENT=34 DEFAULT CHARSET=utf8;
+) ;
 
 --
 -- 转存表中的数据 `tools_list`
@@ -117,7 +93,7 @@ CREATE TABLE IF NOT EXISTS `tools_log` (
   `time` text NOT NULL,
   `state` int(11) NOT NULL,
   `id` int(11) NOT NULL
-)  DEFAULT CHARSET=utf8;
+) ;
 
 -- --------------------------------------------------------
 
@@ -143,7 +119,7 @@ CREATE TABLE IF NOT EXISTS `tools_settings` (
   `name` text NOT NULL,
   `qq` text NOT NULL,
   `emails` text NOT NULL
-)  AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ;
 
 --
 -- 转存表中的数据 `tools_settings`
@@ -167,7 +143,7 @@ CREATE TABLE IF NOT EXISTS `tools_smtp` (
   `password` tinytext NOT NULL,
   `smtp_from` tinytext NOT NULL,
   `sub` tinytext NOT NULL
-)  AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ;
 
 --
 -- 转存表中的数据 `tools_smtp`
@@ -190,7 +166,7 @@ CREATE TABLE IF NOT EXISTS `tools_talk` (
   `emails` text NOT NULL,
   `ip` text NOT NULL,
   `id` int(11) NOT NULL
-)  DEFAULT CHARSET=utf8;
+) ;
 
 -- --------------------------------------------------------
 
@@ -203,7 +179,7 @@ CREATE TABLE IF NOT EXISTS `tools_user` (
   `user` text NOT NULL,
   `password` text NOT NULL,
   `type` int(30) NOT NULL
-)  AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+);
 
 --
 -- 转存表中的数据 `tools_user`
@@ -297,6 +273,3 @@ ALTER TABLE `tools_talk`
 --
 ALTER TABLE `tools_user`
   MODIFY `id` int(6) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
