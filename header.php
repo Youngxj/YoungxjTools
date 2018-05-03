@@ -4,6 +4,7 @@
 * @author   youngxj
 * @date     2018-04-14
 * @url      http://www.youngxj.cn
+* 切勿商用,切勿改版权,后果自付
 -->
 <?php
 if ($_SERVER["DOCUMENT_ROOT"] == getcwd()) {

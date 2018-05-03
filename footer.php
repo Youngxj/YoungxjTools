@@ -1,7 +1,8 @@
 <!--footer start-->
 <footer class="footer text-center">
 	<div>
-		Copyright <a href="http://www.youngxj.cn" target="_blank"><?php echo $tools_settings['copyright'];?></a> 2018 - <?php echo $tools_settings['icp'];?>  <a href="../log.php" target="_blank">时间轴</a> <a href="../about.php" target="_blank">关于</a>
+    <!--切勿商用,切勿改版权,后果自付-->
+		Copyright <a href="http://www.youngxj.cn" target="_blank">Youngxj</a> 2018 - <?php echo $tools_settings['icp'];?>  <a href="../log.php" target="_blank">时间轴</a> <a href="../about.php" target="_blank">关于</a>
 	</div>
 	<div class="hitokoto">
       	<script type="text/javascript" src="https://api.yum6.cn/yan.php?format=js"></script>

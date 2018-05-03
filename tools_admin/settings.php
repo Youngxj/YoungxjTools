@@ -10,7 +10,6 @@ if(getParam('domain')=='setting'){
     "title" => getParam('title'),
     "keyword" => getParam('keyword'),
     "description" => getParam('description'),
-    "copyright" => getParam('copyright'),
     "icp" => getParam('icp'),
     "notice" => getParam('notice'),
     "rand" => getParam('rand'),
@@ -137,19 +136,6 @@ if(getParam('domain')=='smtp'){
                     <div class="input-group input-group-sm">
                       <span class="input-group-addon"><i class="fa fa-area-chart"></i></span>
                       <input type="text" placeholder="邮箱" class="form-control" name="emails" id="emails" value="<?php echo $setting['emails'];?>">
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="" class="col-sm-3 col-md-3 col-lg-2 control-label">网站版权：</label>
-              <div class="col-sm-9 col-md-9 col-lg-10">
-                <div class="row">
-                  <div class="col-md-6">
-                    <div class="input-group input-group-sm">
-                      <span class="input-group-addon"><i class="fa fa-area-chart"></i></span>
-                      <input type="text" placeholder="网站版权" class="form-control" name="copyright" id="copyright" value="<?php echo $setting['copyright'];?>">
                     </div>
                   </div>
                 </div>
