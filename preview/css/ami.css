@@ -1,0 +1,538 @@
+@font-face {
+    font-family: 'RobotoMedium';
+}
+
+body {
+    background-color: #fff;
+    background-image: url("../images/background.jpg");
+    background-size: 100%;
+    background-size: cover;
+    margin-top: 20px;
+    font-family: 'RobotoMedium';
+    margin: 0;
+    padding: 0;
+}
+
+fieldset {
+    border: none
+}
+
+label {
+    float: left;
+    text-indent: -99999px
+}
+
+
+
+h3,dl,dd,dt {
+    margin: 1em 2em
+}
+
+h2 {
+    margin: 1em
+}
+
+dt {
+    font-weight: bold
+}
+
+p {
+    line-height: 1.6;
+    margin: 1em 2em
+}
+
+p.intro {
+    clear: both
+}
+
+a {
+    color: #00FFE7;
+    text-decoration: none;
+    transition: all 1s ease-in-out;
+}
+
+a:hover {
+    color: #cc4e46;
+    background-color: #ede6dc
+}
+
+.button {
+    background-color: #ede6dc;
+    color: #cc4e46;
+    width: 8%;
+    line-height: 1.7em;
+    margin: 0;
+    font-size: 2em;
+    text-align: center;
+    float: left;
+    border: solid 1px #8e352e;
+    box-shadow: 0 0 3px #333
+}
+
+.button:hover {
+    background-color: #cc4e46;
+    color: #ede6dc
+}
+
+.promos {
+    background: #fff;
+    width: 100%;
+    position: relative;
+    border-top: 5px solid;
+    border-bottom: 5px solid;
+    margin: 2em auto;
+    padding: 2em 0
+}
+
+.promos h2 {
+    text-align: center;
+    margin-top: 0
+}
+
+.ebook {
+    border-right: 3px solid
+}
+
+.promos .button {
+    width: 100%;
+    font-size: 1.5em;
+    background-color: #cc4e46;
+    color: #ede6dc
+}
+
+.ebook,.bookmarklet {
+    width: 49%;
+    float: left
+}
+
+h1 {
+    text-transform: uppercase;
+    text-align: center
+}
+
+.wrapper {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.netawards {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 125px;
+    height: 125px;
+    background-image: url(/images/NETawards_ribbon.png)
+}
+
+.netawards a {
+    display: block;
+    width: 125px;
+    height: 125px;
+    text-indent: -999999px
+}
+
+.netawards a:hover {
+    background-color: transparent
+}
+
+.display {
+    position: relative;
+    left: 0px;
+    height: 600px
+}
+
+.url {
+    float: left;
+    background-color: #cc4e46;
+    width: 100%;
+    margin: 0 auto;
+    box-shadow: 0px -2px 5px #333
+}
+
+
+div {
+    background-repeat: no-repeat;
+    background-size: 100%;
+    overflow: hidden;
+}
+
+iframe {
+    transform: scale(0.219);
+    -webkit-transform: scale(0.219);
+    -o-transform: scale(0.219);
+    -ms-transform: scale(0.219);
+    -moz-transform: scale(0.219);
+    transform-origin: top left;
+    -webkit-transform-origin: top left;
+    -o-transform-origin: top left;
+    -ms-transform-origin: top left;
+    -moz-transform-origin: top left;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    background-color: #fff;
+    border-color: #000
+}
+
+.mobile {
+    background-image: url("../images/iphone-optimised.png");
+    position: absolute;
+    width: 126px;
+    top: 375px;
+    left: 300px;
+    z-index: 5;
+}
+
+.mobile iframe {
+    width: 428px;
+    height: 640px;
+    top: 42px;
+    left: 14px;
+    overflow-y: hidden;
+}
+
+.tablet {
+    background-image: url("../images/ipad-optimised.png");
+    width: 316px;
+    z-index: 3;
+    position: absolute;
+    left: 120px;
+    top: 230px;
+}
+
+.tablet iframe {
+    width: 980px;
+    height: 1300px;
+    top: 44px;
+    left: 50px;
+    overflow-y: hidden;
+    border-radius: 10px;
+}
+
+.laptop {
+    background-image: url("../images/laptop-screen-optimised.png");
+    width: 567px;
+    top: 264px;
+    left: 560px;
+    position: absolute;
+    z-index: 2;
+}
+
+.laptop iframe {
+    width: 1526px;
+    height: 955px;
+    top: 31px;
+    left: 71px;
+    transform: scale(0.277);
+    -webkit-transform: scale(0.277);
+    -o-transform: scale(0.277);
+    -ms-transform: scale(0.277);
+    -moz-transform: scale(0.277);
+    transform-origin: top left;
+    -webkit-transform-origin: top left;
+    -o-transform-origin: top left;
+    -ms-transform-origin: top left;
+    -moz-transform-origin: top left;
+    border-radius: 10px;
+}
+
+.desktop {
+    position: absolute;
+    width: 690px;
+    background-image: url("../images/large-screen-optimised.png");
+    top: 0px;
+    left: 220px;
+    z-index: 1;
+}
+
+.desktop iframe {
+    left: 34px;
+    top: 46px;
+    width: 1946px;
+    height: 1212px;
+    transform: scale(0.3181);
+    -webkit-transform: scale(0.3181);
+    -o-transform: scale(0.3181);
+    -ms-transform: scale(0.3181);
+    -moz-transform: scale(0.3181);
+    transform-origin: top left;
+    -webkit-transform-origin: top left;
+    -o-transform-origin: top left;
+    -ms-transform-origin: top left;
+    -moz-transform-origin: top left;
+    border-radius: 10px;
+}
+
+.about-tool {
+    font-size: 1.2em;
+    max-width: 64em;
+    width: 80%;
+    margin: 1em auto
+}
+
+.about-tool li {
+    margin-bottom: 0.5em;
+    line-height: 1.2
+}
+
+@media (max-width: 1160px) {
+    .display {
+        width:95%;
+        height: 550px;
+        transform: scale(0.81);
+        -webkit-transform: scale(0.81);
+        -o-transform: scale(0.81);
+        -ms-transform: scale(0.81);
+        -moz-transform: scale(0.81)
+    }
+
+    .desktop {
+        left: 180px
+    }
+
+    .laptop {
+        left: 520px
+    }
+
+    .tablet {
+        left: 80px
+    }
+
+    .mobile {
+        left: 260px
+    }
+
+
+}
+
+@media (max-width: 1070px) {
+    .display {
+        left:-50px
+    }
+}
+
+@media (max-width: 1000px) {
+    .display {
+        height:500px;
+        transform: scale(0.71);
+        -webkit-transform: scale(0.71);
+        -o-transform: scale(0.71);
+        -ms-transform: scale(0.71);
+        -moz-transform: scale(0.71);
+        top: -40px
+    }
+
+    .desktop {
+        left: 140px
+    }
+
+    .laptop {
+        left: 480px
+    }
+
+    .tablet {
+        left: 40px
+    }
+
+    .mobile {
+        left: 220px
+    }
+}
+
+@media (max-width: 850px) {
+    .display {
+        height:500px;
+        transform: scale(0.65);
+        -webkit-transform: scale(0.65);
+        -o-transform: scale(0.65);
+        -ms-transform: scale(0.65);
+        -moz-transform: scale(0.65)
+    }
+
+    .desktop {
+        left: 100px
+    }
+
+    .laptop {
+        left: 440px
+    }
+
+    .tablet {
+        left: 0px
+    }
+
+    .mobile {
+        left: 180px
+    }
+}
+
+@media (max-width: 768px) {
+    .display {
+        height:450px;
+        transform: scale(0.55);
+        -webkit-transform: scale(0.55);
+        -o-transform: scale(0.55);
+        -ms-transform: scale(0.55);
+        -moz-transform: scale(0.55)
+    }
+
+
+}
+
+@media (max-width: 670px) {
+    .display {
+        height:400px;
+        left: -70px;
+        transform: scale(0.45);
+        -webkit-transform: scale(0.45);
+        -o-transform: scale(0.45);
+        -ms-transform: scale(0.45);
+        -moz-transform: scale(0.45)
+    }
+}
+
+
+
+@media (max-width: 560px) {
+    .display {
+        height:270px;
+        top: -65px;
+        transform: scale(0.37);
+        -webkit-transform: scale(0.37);
+        -o-transform: scale(0.37);
+        -ms-transform: scale(0.37);
+        -moz-transform: scale(0.37)
+    }
+}
+
+@media (max-width: 440px) {
+    .display {
+        left:-17px;
+        top: -65px;
+        width: 70px;
+        transform: scale(0.35);
+        -webkit-transform: scale(0.35);
+        -o-transform: scale(0.35);
+        -ms-transform: scale(0.35);
+        -moz-transform: scale(0.35)
+    }
+}
+
+@media (max-width: 380px) {
+    .display {
+        height:235px;
+        left: -17px;
+        top: -65px;
+        width: 70px;
+        transform: scale(0.27);
+        -webkit-transform: scale(0.27);
+        -o-transform: scale(0.27);
+        -ms-transform: scale(0.27);
+        -moz-transform: scale(0.27)
+    }
+
+    .desktop {
+        left: 100px;
+    }
+
+    .laptop {
+        left: 515px
+    }
+
+    .tablet {
+        left: 0px
+    }
+
+    .mobile {
+        left: 180px
+    }
+
+    h1 {
+        font-size: 1.2em
+    }
+
+    p {
+        margin: 1em
+    }
+}
+
+.button1 {
+    background-color: #ede6dc;
+    border: 1px solid #8e352e;
+    box-shadow: 0 0 3px #333;
+    color: #cc4e46;
+    float: left;
+    font-size: 2em;
+    line-height: 1.7em;
+    margin: 0;
+    text-align: center;
+    width: 80%;
+}
+
+#carbonads {
+    max-width: 400px;
+    margin: 1em auto;
+}
+
+/* To position the text beside the image: */
+.carbon-img {
+    float: left;
+    margin-right: 8px;
+}
+
+.carbon-text {
+    display: block;
+}
+
+/* To position the text below the image: */
+/*
+
+.carbon-text { 
+
+    display: block; 
+
+    width: 130px; 
+
+}
+
+*/
+/* To separate the attribution from the text: */
+.carbon-poweredby {
+    float: right;
+}
+
+.carbon-text {
+    padding: 8px;
+}
+
+/* To add a border around the ad: */
+#carbonads {
+    padding: 15px;
+    border: 1px solid #ccc;
+}
+
+/* To style the text and attribution: */
+.carbon-text {
+    font-size: 12px;
+    color: orange;
+}
+
+.carbon-poweredby {
+    font-size: 75%;
+}
+
+/* To fixed position the ad: */
+/*
+
+#carbonads { 
+
+    position: fixed; 
+
+    bottom: 5px;
+
+    right: 5px;
+
+}
+
+*/

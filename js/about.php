@@ -2,7 +2,7 @@
 * @act      关于界面js
 * @version  1.0
 * @author   youngxj
-* @date     2018-04-10
+* @date     2018-05-05
 * @url      http://www.youngxj.cn
 */
 
@@ -38,7 +38,7 @@ $(function () {
         url: "/talk_up.php",
         type: "POST",
         dataType: "jsonp",
-        data: { name: name, email: email,content:content,check:check,Forge:'<?php echo md5(md5((int)(time()/600)).'YoungxjTools');?>'},
+        data: { name: name, email: email,content:content,check:check,Forge:'<?php echo md5(md5((int)(time()/1200)).'YoungxjTools');?>'},
         success: function (ret) {
           if (ret.state == 'ok') {
 			setCookie('user_name',name,365*365);
