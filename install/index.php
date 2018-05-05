@@ -94,6 +94,7 @@ function curl_get_https($url){
 			//获取表单提交数据
 			$host = isset($_POST['host']) ? $_POST['host'] : '';
 			$user = isset($_POST['user']) ? $_POST['user'] : '';
+			$dk = isset($_POST['dk']) ? $_POST['dk'] : '';
 			$password = isset($_POST['password']) ? $_POST['password'] : '';
 			$database = isset($_POST['database']) ? $_POST['database'] : '';
 			$username = isset($_POST['username']) ? $_POST['username'] : '';
@@ -121,11 +122,11 @@ function curl_get_https($url){
 				$data = "<?php
 				return array(
 					'mysql' => array(
-						'MYSQL_HOST' => '{$_POST['host']}', // 数据库地址
-						'MYSQL_PORT' => '{$_POST['dk']}',      // 数据库端口，一般是3306
-						'MYSQL_USER' => '{$_POST['user']}',      // 数据库用户名
-						'MYSQL_PASS' => '{$_POST['password']}',          // 数据库密码
-						'MYSQL_DB'   => '{$_POST['user']}',      // 数据库库名称
+						'MYSQL_HOST' => '{$host}', // 数据库地址
+						'MYSQL_PORT' => '{$dk}',      // 数据库端口，一般是3306
+						'MYSQL_USER' => '{$user}',      // 数据库用户名
+						'MYSQL_PASS' => '{$password}',          // 数据库密码
+						'MYSQL_DB'   => '{$database}',      // 数据库库名称
 						'MYSQL_CHARSET' => 'utf8',   // 编码，一般utf8即可
 					),
 				);
@@ -164,7 +165,7 @@ function curl_get_https($url){
 						`id` int(11) NOT NULL,
 						`tools_number` int(11) NOT NULL,
 						`tools_love` int(11) NOT NULL
-					)  AUTO_INCREMENT=35 DEFAULT CHARSET=utf8;
+					)  AUTO_INCREMENT=37 DEFAULT CHARSET=utf8;
 
 
 					INSERT INTO `tools_list` (`title`, `subtitle`, `explains`, `keyword`, `tools_url`, `tools_img`, `tools_type`, `priority`, `state`, `type`, `id`, `tools_number`, `tools_love`) VALUES
@@ -200,7 +201,10 @@ function curl_get_https($url){
 					('Js代码整理', 'JS Format', 'Js代码加解密,格式化整理,压缩和解压', 'Js代码加解密,js代码格式化,js压缩,js解压', 'js_Format', '//{$web_url}/images/js.png', '开发类', 1, 0, 0, 30, 0, 0),
 					('摩斯密码转换器', 'morse', '在线摩斯密码转换器', '摩斯密码转换器', 'morse', '//{$web_url}/images/morse.png', '其他', 0, 0, 0, 31, 0, 0),
 					('文字排版统计', 'text count', '文字排版统计', '文字排版统计', 'text_count', '//{$web_url}/images/word.png', '其他', 1, 0, 0, 32, 0, 0),
-					('随机密码生成器', 'Random key', '随机密码生成器', '随机密码生成器', 'rand_key', '//{$web_url}/images/key.png', '其他', 1, 0, 0, 33, 0, 0);
+					('随机密码生成器', 'Random key', '随机密码生成器', '随机密码生成器', 'rand_key', '//{$web_url}/images/key.png', '其他', 1, 0, 0, 33, 0, 0),
+					('QQ空间艾特蓝链', 'qzone', 'QQ空间艾特蓝链', 'QQ空间艾特蓝链', 'qzone', '//{$web_url}/images/qzone.png', '娱乐类', 1, 0, 0, 34, 0, 0),
+					('略缩图四合一', 'preview', '略缩图四合一', '略缩图四合一', 'preview', '//{$web_url}/images/preview.png', '其他', 1, 0, 0, 35, 0, 0),
+					('个性二维码制作', 'pre_qrcode', '个性二维码制作', '个性二维码制作', 'pre_qrcode', '//{$web_url}/images/qrcode.png', '其他', 1, 0, 0, 36, 0, 0);
 					
 
 					CREATE TABLE IF NOT EXISTS `tools_log` (
@@ -295,7 +299,7 @@ function curl_get_https($url){
 					MODIFY `id` int(6) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 
 					ALTER TABLE `tools_list`
-					MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=35;
+					MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=37;
 
 					ALTER TABLE `tools_log`
 					MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;

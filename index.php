@@ -122,7 +122,7 @@ include 'function.py.php';
             <a href="javascript:;">友情链接</a>
           </div>
           <div class="links_bt_r">
-            <a href="../about" rel="nofollow" target="_blank">申请</a>
+            <a href="../about.php" rel="nofollow" target="_blank">申请</a>
           </div>
         </div>
         <div class="links_lb">

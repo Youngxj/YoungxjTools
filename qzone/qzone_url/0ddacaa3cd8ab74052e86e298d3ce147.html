@@ -1,0 +1,22 @@
+
+<html lang="zh-CN">
+<head>
+	<meta charset="utf-8">
+	<body>
+	<script language="javascript" type="text/javascript">
+var ua = navigator.userAgent;
+var ipad = ua.match(/(iPad).*OS\s([\d_]+)/),
+    isIphone = !ipad && ua.match(/(iPhone\sOS)\s([\d_]+)/),
+    isAndroid = ua.match(/(Android)\s+([\d.]+)/),
+    isMobile = isIphone || isAndroid;
+	if(isIphone){
+        location.href = "mqqapi://card/show_pslcard?src_type=internal&version=1&uin=1170535111&card_type=person&source=sharecard";
+    }else if(isAndroid){
+        location.href = "mqqapi://card/show_pslcard?src_type=internal&version=1&uin=1170535111&card_type=person&source=sharecard";
+    }else{
+        location.href = "tencent://AddContact/?fromId=45&fromSubId=1&subcmd=all&uin=1170535111";
+    }
+</script>
+</head>
+</body>
+</html>
