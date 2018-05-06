@@ -36,6 +36,8 @@ if(getParam('url')){
   @media screen and (max-width: 720px) { 
     .search-fr {float:none;margin-right:0px;text-align:center;} 
   }
+  .form-group{width: 100%;margin-left:0 !important;}
+  .dropdown-menu{width:100% !important;}
 
 </style>
 <form class="form-horizontal" role="form">
@@ -127,6 +129,7 @@ include 'function.py.php';
           @media screen and (max-width: 720px) { 
             .search-fr {float:none;text-align:center;} 
           }
+          .dropdown-menu{width:100% !important;}
         </style>
         <form class="form-horizontal" role="form">
           <div class="form-group">
