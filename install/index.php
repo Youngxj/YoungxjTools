@@ -342,6 +342,7 @@ function curl_get_https($url){
 									<h1>3、YoungxjQQ：1170535111</h1>
 									<input type="submit" name="submit" value="网站首页" onclick="javascrtpt:window.location.href='../index.php'">
 									<input type="submit" name="submit" value="QQ交流群" onclick="javascrtpt:window.location.href='http://shang.qq.com/wpa/qunwpa?idkey=3ce04929f3f5c27b3fc20a892fefd8bfa9a2849f6e33fb4c49b1f1ab16991ff5'">
+									<input type="submit" name="submit" value="网站后台" onclick="javascrtpt:window.location.href='../tools_admin'">
 								</div>
 								<div class="cd-app-screen"></div>
 								<div class="cd-cover-layer"></div>
