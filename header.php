@@ -143,7 +143,9 @@ if($id){
   }
   #f_list{position:fixed;right:30px;bottom:60px;transition:bottom ease .3s;z-index:9;font-size:18px;text-align:center;line-height:36px}
   #f_list a.btn{width:36px;height:36px;display:block;text-decoration:none;color:#999;border-radius:5px}
-
+  @media screen and (max-width: 720px) { 
+    #f_list {right:0px;} 
+  }
   .centent{min-height:500px;}
 </style>
 </head>
