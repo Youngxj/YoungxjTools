@@ -28,8 +28,12 @@ if(getParam('url')){
 ?>
 <link rel="stylesheet" type="text/css" href="/css/bootstrap-select.min.css">
 <script src="/js/bootstrap-select.min.js"></script>
-
+<style type="text/css">
+.breadcrumb{padding:8px 15px 13px 15px;}
+.breadcrumb>li{margin-top:6px;}
+</style>
 <?php if(constant('templates')=='1'){?>
+<?php if (search=='1') {?>
 <div class="search-fr">
   <style>
   .search-fr{float:right;margin-right:145px;}
@@ -58,6 +62,7 @@ if(getParam('url')){
     $(window).attr('location','?query='+$('#basic').val());
   });
 </script>
+<?php }?>
 <link rel="stylesheet" type="text/css" href="css/temp_one.css">
 <div class="container centent" style="padding-bottom:20px;">
   <div class="row row-xs">
@@ -118,6 +123,7 @@ include 'function.py.php';
       <li data-class=".<?php if($age['tools_type']){echo pinyin($age['tools_type'], 'first');}else{echo 'qt';}?>">
        <span><?php echo $age['tools_type'];?></span></li>
        <?php }?>
+       <?php if (search=='1') {?>
        <div class="search-fr">
         <style>
         /*.search-fr{ position:fixed;right: 143px;z-index: 999;}
@@ -144,6 +150,19 @@ include 'function.py.php';
           </div>
         </form>
       </div>
+      <script type="text/javascript">
+        $('.selectpicker').on('changed.bs.select',function(e){
+          $('.dropdown-toggle').data("class",'.'+$('#basic').val());
+          $('.active').removeClass("active");
+          if ($('.dropdown-toggle').attr('class') == 'active') return false;
+          $('.dropdown-toggle').addClass("active");
+          if($('.dropdown-toggle').data("class")=='.搜索'){
+            $(".tool-item").show();
+          }else{if ($('.dropdown-toggle').data("class") !== ".tool-item") $(".tool-item").hide();}
+          $($('.dropdown-toggle').data("class")).fadeIn(0);
+        });
+      </script>
+      <?php }?>
     </ol>
     <div class="row">
       <?php if(!$tools_list){
@@ -157,7 +176,7 @@ include 'function.py.php';
        $toolsurl = constant("Tools_url").'?url='.$age['tools_url'];
        ?>
        <div class="col-sm-6 col-md-4 col-lg-3 tool-item <?php if($age['tools_type']){echo pinyin($age['tools_type'], 'first');}else{echo 'qt';}?> <?php echo pinyin($age['title'], 'first');?>">
-        <a href="<?php echo $toolsurl;?>">
+        <a href="<?php echo $toolsurl;?>" target="_blank">
           <div class="maple-tool-item image-shadow">
             <span class="maple-tool-icon maple-tool-item-color<?php echo rand(1,6);?>"><?php echo mb_substr($age['title'],0,1,'utf-8');?></span>
             <h3 class="maple-tool-name"><?php echo $age['title'];?></h3>
@@ -175,19 +194,7 @@ include 'function.py.php';
           <?php }?>
         </div>
       </div>
-      <script type="text/javascript">
-        $('.selectpicker').on('changed.bs.select',function(e){
-
-          $('.dropdown-toggle').data("class",'.'+$('#basic').val());
-          $('.dropdown-toggle').removeClass("active");
-          if ($('.dropdown-toggle').attr('class') == 'active') return false;
-          $('.dropdown-toggle').addClass("active");
-          if($('.dropdown-toggle').data("class")=='.搜索'){
-            $(".tool-item").show();
-          }else{if ($('.dropdown-toggle').data("class") !== ".tool-item") $(".tool-item").hide();}
-          $($('.dropdown-toggle').data("class")).fadeIn(0);
-        });
-      </script>
+      
       <script>
         $(function() {
           $('#choose-tool li').click(function() {

@@ -51,24 +51,30 @@ define('Emails', $tools_settings['emails']);
 define('Tools_url', '//'.$tools_settings['url'].'/');
 
 /*
- *	全局工具排行
- *	priority desc	权重排行
- *	tools_love desc	热度排行
- *  id desc 		添加顺序排行
- *	tools_number desc	使用次数排行
+ *  全局工具排行
+ *  priority desc 权重排行
+ *  tools_love desc 热度排行
+ *  id desc     添加顺序排行
+ *  tools_number desc 使用次数排行
  */
 //$desc = $_COOKIE['desc']!='' ? deepEscape($_COOKIE['desc']) : 'priority';
 define('Desc', 'priority desc');
 
 
 /*
- *	首页样式设置
- *	1	tool.lu样式
- *	2	流行样式
+ *  首页样式设置
+ *  1 tool.lu样式
+ *  2 流行样式
  */
 
 define('templates', deepEscape($_COOKIE['temp']));
 
+/**
+ * 搜索框样式
+ * 1 模糊搜索框
+ * 2 导航简约搜索框
+ */
+define('search',$tools_settings['search']);
 
 /*自定义导航*/
 $sp->table_name = "tools_links";
@@ -111,8 +117,8 @@ if($id){
   <meta name="Copyright" Content="本页版权归Youngxj所有.All Rights Reserved">
   <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="/font-awesome-4.7.0/css/font-awesome.min.css">
-  <script src="/js/jquery.min.js"></script>
-  <script src="/js/clipboard.min.js"></script>
+  <script type="text/javascript" src="/js/jquery.min.js"></script>
+  <script type="text/javascript" src="/js/clipboard.min.js"></script>
   <script type="text/javascript" src="/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="/css/layer/layer.js"></script>
   <script type="text/javascript" src="/js/main.js"></script>
@@ -147,6 +153,11 @@ if($id){
     #f_list {right:0px;} 
   }
   .centent{min-height:500px;}
+  /*logo居中*/
+  @media screen and (min-width: 768px) { 
+    .navbar-header{position: absolute;top: 50%;transform: translateY(-50%);}
+  }
+  .search{padding-left:5px;}
 </style>
 </head>
 <body>
@@ -174,7 +185,18 @@ href="http://browsehappy.com">立即升级</a>
         <li <?php if($_GET['sort']==$age['tools_type']){echo 'class="active"';}?>><a href="../?sort=<?php echo $age['tools_type'];?>"><?php echo $age['tools_type'];?></a></li>
         <?php }}?>
         <?php foreach($tools_links as $age){?><!--自定义导航目录-->
-        <li><a href="<?php echo $age['url'];?>"><?php echo $age['name'];?></a></li>
+        <li><a href="<?php echo $age['url'];?>" target="_blank"><?php echo $age['name'];?></a></li>
+        <?php }?>
+        <br/>
+        <?php if (search=='2') {?>
+        <!--搜索框-->
+        <div style="float: inherit;text-align:center;">
+          <form action="/index.php" method="get" id="search">
+            <input name="query" value="搜索" onblur="if(this.value==''){this.value='搜索';}" onfocus="if(this.value=='搜索'){this.value=''}"  class="search" type="text">
+            <input value="搜索"  type="submit">
+          </form>
+        </div>
+        <!--搜索框end-->
         <?php }?>
       </ul>
     </div><!-- /.navbar-collapse -->

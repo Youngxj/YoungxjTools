@@ -233,12 +233,13 @@ function curl_get_https($url){
 						`ua` int(30) NOT NULL,
 						`name` text NOT NULL,
 						`qq` text NOT NULL,
-						`emails` text NOT NULL
+						`emails` text NOT NULL,
+						`search` int(30) NOT NULL
 					)  AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 
-					INSERT INTO `tools_settings` (`id`, `url`, `title`, `keyword`, `description`, `copyright`, `icp`, `footer`, `notice`, `ip_admin`, `ip_vip`, `rand`, `referer`, `ua`, `name`, `qq`, `emails`) VALUES
-					(1, '{$web_url}', '杨小杰工具箱', '二维码生成,dns解析查询,短网址生成,icp备案查询,ip定位,全民k歌解析,在线ping,端口扫描,子域名扫描,QQ在线状态,在线运行,时间戳转换,ua查询,whois查询,字符加解密', 'YoungxjTools提供二维码生成,dns解析查询,短网址生成,icp备案查询,ip定位,全民k歌解析,在线ping,端口扫描,子域名扫描,QQ在线状态,在线运行,时间戳转换,ua查询,whois查询,字符加解密等优质的小工具,更加方便的使用我们的小工具,便捷站长使用工具', 'Youngxj', '', '', '', '', '127.0.0.255', 'Youngxj', 1, 1, 'YoungxjTools', '1170535111', 'blog@youngxj.cn');
+					INSERT INTO `tools_settings` (`id`, `url`, `title`, `keyword`, `description`, `copyright`, `icp`, `footer`, `notice`, `ip_admin`, `ip_vip`, `rand`, `referer`, `ua`, `name`, `qq`, `emails`,`search`) VALUES
+					(1, '{$web_url}', '杨小杰工具箱', '二维码生成,dns解析查询,短网址生成,icp备案查询,ip定位,全民k歌解析,在线ping,端口扫描,子域名扫描,QQ在线状态,在线运行,时间戳转换,ua查询,whois查询,字符加解密', 'YoungxjTools提供二维码生成,dns解析查询,短网址生成,icp备案查询,ip定位,全民k歌解析,在线ping,端口扫描,子域名扫描,QQ在线状态,在线运行,时间戳转换,ua查询,whois查询,字符加解密等优质的小工具,更加方便的使用我们的小工具,便捷站长使用工具', 'Youngxj', '', '', '', '', '127.0.0.255', 'Youngxj', 1, 1, 'YoungxjTools', '1170535111', 'blog@youngxj.cn','1');
 
 					CREATE TABLE IF NOT EXISTS `tools_smtp` (
 						`id` int(6) unsigned NOT NULL,

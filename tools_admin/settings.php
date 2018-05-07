@@ -19,6 +19,7 @@ if(getParam('domain')=='setting'){
     "footer" => getParam('footer'),
     "qq" => getParam('qq'),
     "emails" => getParam('emails'),
+    "search" => getParam('search'),
   );
   $state = $sett->update(array(),$config);
   var_dump($state);
@@ -227,6 +228,19 @@ if(getParam('domain')=='smtp'){
                     <div class="input-group input-group-sm">
                       <input type="radio"  name="referer" value='1' id="referer_on" <?php if($setting['referer']=='1'){echo 'checked="checked"';}?>>开
                       <input type="radio"  name="referer" value='0' id="referer_off" <?php if($setting['referer']=='0'){echo 'checked="checked"';}?>>关
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="" class="col-sm-3 col-md-3 col-lg-2 control-label">搜索框样式</label>
+              <div class="col-sm-9 col-md-9 col-lg-10">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="input-group input-group-sm">
+                      <input type="radio"  name="search" value='1' id="search_mh" <?php if($setting['search']=='1'){echo 'checked="checked"';}?>>模糊搜索
+                      <input type="radio"  name="search" value='2' id="search_jy" <?php if($setting['search']=='2'){echo 'checked="checked"';}?>>简约搜索
                     </div>
                   </div>
                 </div>
