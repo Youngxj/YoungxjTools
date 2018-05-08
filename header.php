@@ -7,7 +7,9 @@
 * 切勿商用,切勿改版权,后果自付
 -->
 <?php
-if(!is_file($_SERVER['DOCUMENT_ROOT'].'/install/install.lock')){
+define('APP_PATH',realpath(dirname(__FILE__)));
+define('DS',DIRECTORY_SEPARATOR);
+if(!is_file(APP_PATH.DS.'install/install.lock')){
   exit('你还没有安装！<a href="install">点击安装<a>');
 }
 
