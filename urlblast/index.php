@@ -27,6 +27,6 @@ include '../header.php';?>
 		</div>
 	</div>
 </div>
-<?php include '../more.php';more('urlblast');?>
+<?php more('urlblast','url',Tools_url);?>
 <script type="text/javascript" src="urlblast.php"></script>
 <?php include '../footer.php';?>

@@ -137,3 +137,38 @@ function ipadmin($ip,$ip_admin){
 	}
 }
 ?>
+
+<?php
+/**
+ * 页面跳转
+ */
+function Jump($directUrl) {
+    header("Location: $directUrl");
+    exit;
+}
+?>
+<?php
+//相关工具
+function more($name,$type,$url){?>
+<style>
+  .more ul{list-style:none;margin:0;padding-right:40px;}
+  .more li{display:inline;white-space:nowrap;}
+</style>
+<div class="table text-center more">
+  <ul>
+    <?php if($type == 'url'){?>
+    <?php if($name!='urlblast'){?><li><a href="<?php echo $url;?>/urlblast" id="more" >子域名爆破</a></li><?php }?>
+    <?php if($name!='dns'){?><li><a href="<?php echo $url;?>/dns" id="more">Dns解析记录</a></li><?php }?>
+    <?php if($name!='ping'){?><li><a href="<?php echo $url;?>/ping/" id="more">超级Ping</a></li><?php }?>
+    <?php if($name!='StatusCode'){?><li><a href="<?php echo $url;?>/StatusCode/" id="more">网站状态码</a></li><?php }?>
+    <?php if($name!='dwzurl'){?><li><a href="<?php echo $url;?>/dwzurl/" id="more">短网址生成</a></li><?php }?>
+    <?php if($name!='icp'){?><li><a href="<?php echo $url;?>/icp/" id="more">ICP备案查询</a></li><?php }?>
+    <?php if($name!='whois'){?><li><a href="<?php echo $url;?>/whois/" id="more">Whios查询</a></li><?php }?>
+    <?php if($name!='rank'){?><li><a href="<?php echo $url;?>/rank/" id="more">权重查询</a></li><?php }?>
+    <?php }elseif($type == 'ip'){?>
+    <?php if($name!='ip'){?><li><a href="<?php echo $url;?>/ip/" id="more" >IP地址查询</a></li><?php }?>
+    <?php if($name!='portblast'){?><li><a href="<?php echo $url;?>/portblast/" id="more">IP端口扫描</a></li><?php }?>
+    <?php }?>
+  </ul>
+</div>
+<?php }?>

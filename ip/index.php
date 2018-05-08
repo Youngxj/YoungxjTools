@@ -32,6 +32,6 @@ $content = '<table class="table table-bordered"><tbody><tr><th scope="row">IP地
 		</div>
 	</div>
 </div>
-<?php include '../more.php';more_ip('ip');?>
+<?php more('ip','ip',Tools_url);?>
 <script type="text/javascript" src="ip.php"></script>
 <?php include '../footer.php';?>

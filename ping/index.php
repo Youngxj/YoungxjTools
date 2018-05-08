@@ -34,6 +34,6 @@ include '../header.php';?>
 		</div>
 	</div>
 </div>
-<?php include '../more.php';more('ping');?>
+<?php more('ping','url',Tools_url);?>
 <script type="text/javascript" src="ping.php"></script>
 <?php include '../footer.php';?>

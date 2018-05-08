@@ -1,7 +1,7 @@
 <?php
 $title = '关于YoungxjTools';
 $keywords = 'Youngxj,YoungxjTools';
-include './header.php';
+include 'header.php';
 // smtp发信模块
 include 'page.class.php';
 // 下面是输出留言板内容
@@ -121,5 +121,5 @@ $talks=$sp->findall(array('state'=>'1'),"id desc","*","{$fys},{$pagenum}");
   </div>
 </div>
 
-<script type="text/javascript" src="/js/about.php"></script>
-<?php include './footer.php';?>
+<script type="text/javascript" src="js/about.php"></script>
+<?php include 'footer.php';?>

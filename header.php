@@ -2,13 +2,13 @@
 * @act      Tools
 * @version  1.0
 * @author   youngxj
-* @date     2018-05-05
+* @date     2018-05-09
 * @url      http://www.youngxj.cn
 * 切勿商用,切勿改版权,后果自付
 -->
 <?php
 if(!is_file($_SERVER['DOCUMENT_ROOT'].'/install/install.lock')){
-  exit('你还没有安装！<a href="../install">点击安装<a>');
+  exit('你还没有安装！<a href="install">点击安装<a>');
 }
 
 /*全局错误隐藏*/
@@ -48,7 +48,7 @@ define('QQ', $tools_settings['qq']);
 define('Emails', $tools_settings['emails']);
 
 /*全局工具地址*/
-define('Tools_url', '//'.$tools_settings['url'].'/');
+define('Tools_url',$tools_settings['url']);
 
 /*
  *  全局工具排行
@@ -112,16 +112,16 @@ if($id){
   <title><?php echo $title;?>-YoungxjTools</title>
   <meta name="keywords" content="<?php echo $keywords;?>" />
   <meta name="description" content="<?php echo $tools_settings['description'];?>" />
-  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="shortcut icon" href="<?php echo Tools_url;?>/favicon.ico">
   <meta name="Author" Content="Youngxj|杨小杰,admin@youngxj.com">
   <meta name="Copyright" Content="本页版权归Youngxj所有.All Rights Reserved">
-  <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
-  <link rel="stylesheet" type="text/css" href="/font-awesome-4.7.0/css/font-awesome.min.css">
-  <script type="text/javascript" src="/js/jquery.min.js"></script>
-  <script type="text/javascript" src="/js/clipboard.min.js"></script>
-  <script type="text/javascript" src="/js/bootstrap.min.js"></script>
-  <script type="text/javascript" src="/css/layer/layer.js"></script>
-  <script type="text/javascript" src="/js/main.js"></script>
+  <link rel="stylesheet" type="text/css" href="<?php echo Tools_url;?>/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="<?php echo Tools_url;?>/font-awesome-4.7.0/css/font-awesome.min.css">
+  <script type="text/javascript" src="<?php echo Tools_url;?>/js/jquery.min.js"></script>
+  <script type="text/javascript" src="<?php echo Tools_url;?>/js/clipboard.min.js"></script>
+  <script type="text/javascript" src="<?php echo Tools_url;?>/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="<?php echo Tools_url;?>/css/layer/layer.js"></script>
+  <script type="text/javascript" src="<?php echo Tools_url;?>/js/main.js"></script>
   
   <style type="text/css">
   /*正文样式*/
@@ -175,14 +175,18 @@ href="http://browsehappy.com">立即升级</a>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a href="../"><img src="/images/logo.png" alt="YoungxjTools" class="logo" width="135px"></a>
+      <a href="<?php echo Tools_url;?>"><img src="<?php echo Tools_url;?>/images/logo.png" alt="YoungxjTools" class="logo" width="135px"></a>
     </div><!-- /.navbar-header -->
     <div id="navbar" class="collapse navbar-collapse">
       <ul class="nav navbar-nav navbar-right"> 
         <?php if(constant("templates")=='1'){?>
-        <li class="<?php if(!isset($_GET['sort'])){echo 'active';}?>"><a href="//<?php echo $tools_settings['url'];?>"><?php echo $tools_settings['name'];?></a></li>
+        <li class="<?php if(!isset($_GET['sort'])){echo 'active';}?>">
+          <a href="<?php echo Tools_url;?>"><?php echo $tools_settings['name'];?></a>
+        </li>
         <?php foreach($tools_navsort as $age){?><!--分类导航目录优先-->
-        <li <?php if($_GET['sort']==$age['tools_type']){echo 'class="active"';}?>><a href="../?sort=<?php echo $age['tools_type'];?>"><?php echo $age['tools_type'];?></a></li>
+        <li <?php if($_GET['sort']==$age['tools_type']){echo 'class="active"';}?>>
+          <a href="<?php echo Tools_url;?>/?sort=<?php echo $age['tools_type'];?>"><?php echo $age['tools_type'];?></a>
+        </li>
         <?php }}?>
         <?php foreach($tools_links as $age){?><!--自定义导航目录-->
         <li><a href="<?php echo $age['url'];?>" target="_blank"><?php echo $age['name'];?></a></li>
@@ -191,7 +195,7 @@ href="http://browsehappy.com">立即升级</a>
         <?php if (search=='2') {?>
         <!--搜索框-->
         <div style="float: inherit;text-align:center;">
-          <form action="/index.php" method="get" id="search">
+          <form action="<?php echo Tools_url;?>/index.php" method="get" id="search">
             <input name="query" value="搜索" onblur="if(this.value==''){this.value='搜索';}" onfocus="if(this.value=='搜索'){this.value=''}"  class="search" type="text">
             <input value="搜索"  type="submit">
           </form>

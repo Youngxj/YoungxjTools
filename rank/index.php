@@ -25,6 +25,6 @@ include '../header.php';?>
 		</div>
 	</div>
 </div>
-<?php include '../more.php';more('rank');?>
+<?php more('rank','url',Tools_url);?>
 <script type="text/javascript" src="rank.php"></script>
 <?php include '../footer.php';?>

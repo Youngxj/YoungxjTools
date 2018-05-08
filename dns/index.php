@@ -43,6 +43,6 @@ include '../header.php';?>
 		</div>
 	</div>
 </div>
-<?php include '../more.php';more('dns');?>
+<?php more('dns','url',Tools_url);?>
 <script type="text/javascript" src="dns.php"></script>
 <?php include '../footer.php';?>

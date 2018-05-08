@@ -26,6 +26,6 @@ include '../header.php';?>
 	</div>
   
 </div>
-<?php include '../more.php';more('whois');?>
+<?php more('whois','url',Tools_url);?>
 <script type="text/javascript" src="whois.php"></script>
 <?php include '../footer.php';?>

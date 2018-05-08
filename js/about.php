@@ -35,7 +35,7 @@ $(function () {
       var check = $('#check').val();
       $.ajax
       ({
-        url: "/talk_up.php",
+        url: "talk_up.php",
         type: "POST",
         dataType: "jsonp",
         data: { name: name, email: email,content:content,check:check,Forge:'<?php echo md5(md5((int)(time()/1200)).'YoungxjTools');?>'},

@@ -11,7 +11,7 @@ $('#form-control').val(cache);
 control('请输入域名地址：');
 $("#btn_state").click(function(){
 	if ($('.form-control').val() == "") {layer.alert('你是不是忘记填内容了？');return false;}
-	$.getJSON("https://api.yum6.cn/StatusCode.php?url="+$('.form-control').val(),function(result){
+	$.getJSON("https://api.yum6.cn/StatusCode.php?url="+$('.form-control').val()+"&format=StatusCode",function(result){
 		if (result.code=='1') {
 			setCookie('cache_url',$('.form-control').val(),365);
 			document.cookie="cache_url="+$('.form-control').val();  

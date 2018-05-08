@@ -34,6 +34,6 @@ include '../header.php';?>
 		</div>
 	</div>
 </div>
-<?php include '../more.php';more('dwzurl');?>
+<?php more('dwzurl','url',Tools_url);?>
 <script type="text/javascript" src="dwzurl.php"></script>
 <?php include '../footer.php';?>

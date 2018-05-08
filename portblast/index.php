@@ -59,6 +59,6 @@ include '../header.php';?>
 		</div>
 	</div>
 </div>
-<?php include '../more.php';more_ip('portblast');?>
+<?php more('portblast','ip',Tools_url);?>
 <script type="text/javascript" src="portblast.php"></script>
 <?php include '../footer.php';?>

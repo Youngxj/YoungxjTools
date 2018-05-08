@@ -76,7 +76,7 @@ inc();
               </div>
             </div>
             <div class="form-group">
-              <label for="" class="col-sm-3 col-md-3 col-lg-2 control-label">工具地址：</label>
+              <label for="" class="col-sm-3 col-md-3 col-lg-2 control-label">工具地址[外链需要添加http(s)://]：</label>
               <div class="col-sm-9 col-md-9 col-lg-10">
                 <div class="row">
                   <div class="col-md-6">

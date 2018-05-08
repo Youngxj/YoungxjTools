@@ -24,6 +24,6 @@ include '../header.php';?>
 		</div>
 	</div>
 </div>
-<?php include '../more.php';more('icp');?>
+<?php more('icp','url',Tools_url);?>
 <script type="text/javascript" src="icp.php"></script>
 <?php include '../footer.php';?>

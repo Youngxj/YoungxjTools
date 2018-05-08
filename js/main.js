@@ -81,7 +81,7 @@ $(function() {
 });
 
 function ajax_love(id){
-	$.getJSON("/ajax_love.php?id="+id,function(result){ 
+	$.getJSON("ajax_love.php?id="+id,function(result){ 
 		if (result.state=="1") {
           	$('#tools_love_'+id).css("color", "red");
 			layer.msg(result.msg);
