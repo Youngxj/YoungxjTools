@@ -11,10 +11,13 @@ function ToolsList(){
   }else{echo '暂时没有工具哦！';}
   if(getParam('domain') == 'delete'){
     $id = getParam('id');
-	$tools_delete = $tools_up->delete(array('id'=>$id));
+    $tools_delete = $tools_up->delete(array('id'=>$id));
     if($tools_delete){
-    echo '<script type="text/javascript">alert("删除成功");window.location.href="tools_list.php";</script>'; }
-  } 
+      echo '<script type="text/javascript">alert("删除成功");window.location.href="tools_list.php";</script>'; 
+    }else{
+      echo '<script type="text/javascript">alert("删除失败");window.location.href="tools_list.php";</script>'; 
+    }
+  }
 }
 
 function inc(){
@@ -35,8 +38,9 @@ function inc(){
       "state" => getParam('state'),
     );
     $tools_ups = $tools_up->create($config);
-    if($tools_ups){echo '<script type="text/javascript">alert("增加成功");window.location.href="tools_list.php";</script>'; 
-                  }else{
+    if($tools_ups){
+      echo '<script type="text/javascript">alert("增加成功");window.location.href="tools_list.php";</script>'; 
+    }else{
       echo '<script type="text/javascript">alert("失败");</script>'; 
     }
   }
@@ -55,26 +59,29 @@ function TalkList(){
   }else{echo '暂时没有留言哦！';}
   if(getParam('domain') == 'show'){
     $id = getParam('id');
-	$talk_show = $talk->update(array('id'=>$id),array('state'=>'1'));
+    $talk_show = $talk->update(array('id'=>$id),array('state'=>'1'));
     if($talk_show){
-    echo '<script type="text/javascript">alert("显示成功");window.location.href="talk_list.php";</script>'; }
-  }
-  if(getParam('domain') == 'hide'){
-    $id = getParam('id');
-	$talk_hide = $talk->update(array('id'=>$id),array('state'=>'0'));
-    if($talk_hide){
-    echo '<script type="text/javascript">alert("隐藏成功");window.location.href="talk_list.php";</script>'; }
-  }
-  if(getParam('domain') == 'delete'){
-    $id = getParam('id');
-	$talk_delete = $talk->delete(array('id'=>$id));
-    if($talk_delete){
-    echo '<script type="text/javascript">alert("删除成功");window.location.href="talk_list.php";</script>'; }
-  } 
-}
+      echo '<script type="text/javascript">alert("显示成功");window.location.href="talk_list.php";</script>'; }
+    }
+    if(getParam('domain') == 'hide'){
+      $id = getParam('id');
+      $talk_hide = $talk->update(array('id'=>$id),array('state'=>'0'));
+      if($talk_hide){
+        echo '<script type="text/javascript">alert("隐藏成功");window.location.href="talk_list.php";</script>'; }
+      }
+      if(getParam('domain') == 'delete'){
+        $id = getParam('id');
+        $talk_delete = $talk->delete(array('id'=>$id));
+        if($talk_delete){
+          echo '<script type="text/javascript">alert("删除成功");window.location.href="talk_list.php";</script>'; 
+        }else{
+          echo '<script type="text/javascript">alert("删除失败");window.location.href="talk_list.php";</script>'; 
+        }
+      } 
+    }
 
-function LogList(){
-  $time_log = new Model("tools_log");
+    function LogList(){
+      $time_log = new Model("tools_log");
   $log_list = $time_log->findall(array(),"id desc","*");//查询多条数据
   if($log_list){
     echo '<thead><tr><th>Id</th><th>用户</th><th>内容</th><th>时间</th><th>操作</th></tr></thead><tbody>';
@@ -85,9 +92,12 @@ function LogList(){
   }else{echo '暂时没有时间轴哦！';}
   if(getParam('domain') == 'delete'){
     $id = getParam('id');
-	$log_delete = $time_log->delete(array('id'=>$id));
+    $log_delete = $time_log->delete(array('id'=>$id));
     if($log_delete){
-    echo '<script type="text/javascript">alert("删除成功");window.location.href="log_list.php";</script>'; }
+      echo '<script type="text/javascript">alert("删除成功");window.location.href="log_list.php";</script>'; 
+    }else{
+      echo '<script type="text/javascript">alert("删除失败");window.location.href="log_list.php";</script>'; 
+    }
   }
 }
 
@@ -101,8 +111,9 @@ function log_inc(){
       "state" => getParam('state'),
     );
     $log_ups = $log_up->create($config);
-    if($log_ups){echo '<script type="text/javascript">alert("增加成功");window.location.href="log_list.php";</script>'; 
-                  }else{
+    if($log_ups){
+      echo '<script type="text/javascript">alert("增加成功");window.location.href="log_list.php";</script>'; 
+    }else{
       echo '<script type="text/javascript">alert("失败");</script>'; 
     }
   }
@@ -125,9 +136,12 @@ function LinksList(){
   }else{echo '暂时没有友链哦！';}
   if(getParam('domain') == 'delete'){
     $id = getParam('id');
-	$links_delete = $links_up->delete(array('id'=>$id));
+    $links_delete = $links_up->delete(array('id'=>$id));
     if($links_delete){
-    echo '<script type="text/javascript">alert("删除成功");window.location.href="links_list.php";</script>'; }
+      echo '<script type="text/javascript">alert("删除成功");window.location.href="links_list.php";</script>'; 
+    }else{
+      echo '<script type="text/javascript">alert("删除失败");window.location.href="links_list.php";</script>'; 
+    }
   } 
 }
 
@@ -143,8 +157,9 @@ function links_inc(){
       "type" => getParam('type'),
     );
     $links_ups = $links_up->create($config);
-    if($links_ups){echo '<script type="text/javascript">alert("增加成功");window.location.href="links_list.php";</script>'; 
-                  }else{
+    if($links_ups){
+      echo '<script type="text/javascript">alert("增加成功");window.location.href="links_list.php";</script>'; 
+    }else{
       echo '<script type="text/javascript">alert("失败,有可能是你的内容未更改");</script>'; 
     }
   }

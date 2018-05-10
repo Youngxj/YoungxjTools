@@ -3,10 +3,17 @@ include 'header.php';
 $tools_user = new Model("tools_user");
 $user = $tools_user->find(array(),"","user,password");
 if(getParam('domain')=='update'){
+  if (!getParam('user')||!getParam('password')) {
+    exit("<script language='javascript'>alert('账号密码均不能为空');window.location.href='admin.php';</script>");
+  }
 	$user = deepEscape(getParam('user'));
   $password = md5(deepEscape(getParam('password')).base64_encode('YoungxjTools'));
   $user_up = $tools_user->update(array('id'=>'1'),array('user'=>$user,'password'=>$password));
-  if($user_up){exit("<script language='javascript'>alert('修改成功');window.location.href='admin.php';</script>");}
+  if($user_up){
+    exit("<script language='javascript'>alert('修改成功');window.location.href='admin.php';</script>");
+  }else{
+    exit("<script language='javascript'>alert('修改失败[可能内容未修改]');window.location.href='admin.php';</script>");
+  }
 }
 
 ?>
@@ -49,7 +56,7 @@ if(getParam('domain')=='update'){
                   <div class="col-md-6">
                     <div class="input-group input-group-sm">
                       <span class="input-group-addon"><i class="fa fa-drivers-license-o"></i></span>
-                      <input type="password" placeholder="密码" class="form-control" name="password" id="password" value="<?php echo $user['password'];?>">
+                      <input type="password" placeholder="密码" class="form-control" name="password" id="password" >
                     </div>
                   </div>
                 </div>

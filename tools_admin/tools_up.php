@@ -1,31 +1,32 @@
 <?php
 include 'header.php';
 $tools_up = new Model("tools_list");
-  $id=getParam('id');
-  if($id){
-    $tools_up_id = $tools_up->find(array('id'=>$id),"","*");
+$id=getParam('id');
+if($id){
+  $tools_up_id = $tools_up->find(array('id'=>$id),"","*");
+}
+if(getParam('domain') == 'update'){
+  $config = array(
+    "title" => getParam('title'),
+    "explains" => getParam('explains'),
+    "subtitle" => getParam('subtitle'),
+    "keyword" => getParam('keyword'),
+    "tools_url" => getParam('tools_url'),
+    "tools_img" => getParam('tools_img'),
+    "tools_type" => getParam('tools_type'),
+    "tools_number" => getParam('tools_number'),
+    "tools_love" => getParam('tools_love'),
+    "priority" => getParam('priority'),
+    "type" => getParam('type'),
+    "state" => getParam('state'),
+  );
+  $tools_ups = $tools_up->update(array('id'=>$id),$config);
+  if($tools_ups){
+    echo '<script type="text/javascript">alert("修改成功");window.location.href="tools_list.php";</script>'; 
+  }else{
+    echo "<script>alert('失败');</script>";
   }
-  if(getParam('domain') == 'update'){
-    $config = array(
-      "title" => getParam('title'),
-      "explains" => getParam('explains'),
-      "subtitle" => getParam('subtitle'),
-      "keyword" => getParam('keyword'),
-      "tools_url" => getParam('tools_url'),
-      "tools_img" => getParam('tools_img'),
-      "tools_type" => getParam('tools_type'),
-      "tools_number" => getParam('tools_number'),
-      "tools_love" => getParam('tools_love'),
-      "priority" => getParam('priority'),
-      "type" => getParam('type'),
-      "state" => getParam('state'),
-    );
-    $tools_ups = $tools_up->update(array('id'=>$id),$config);
-    if($tools_ups){echo '<script type="text/javascript">alert("修改成功");window.location.href="tools_list.php";</script>'; 
-                  }else{
-      echo "<script>alert('失败');</script>";
-    }
-  }
+}
 ?>
 <?php ?>
 <div id="content">

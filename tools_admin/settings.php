@@ -23,8 +23,9 @@ if(getParam('domain')=='setting'){
   );
   $state = $sett->update(array(),$config);
   var_dump($state);
-  if($state){echo '<script type="text/javascript">alert("修改成功");window.location.href="settings.php";</script>'; 
-            }else{
+  if($state){
+    echo '<script type="text/javascript">alert("修改成功");window.location.href="settings.php";</script>'; 
+  }else{
     echo "<script>alert('失败');</script>";
   }
 }
@@ -39,8 +40,9 @@ if(getParam('domain')=='smtp'){
     "sub" => getParam('sub'),
   );
   $state = $setsmtp->update(array("1"),$config);
-  if($state){echo '<script type="text/javascript">alert("修改成功");window.location.href="settings.php";</script>'; 
-            }else{
+  if($state){
+    echo '<script type="text/javascript">alert("修改成功");window.location.href="settings.php";</script>'; 
+  }else{
     echo "<script>alert('失败');</script>";
   }
 }
