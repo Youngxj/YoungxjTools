@@ -1,8 +1,8 @@
 <!--
 * @act      Tools
-* @version  1.0
+* @version  1.1
 * @author   youngxj
-* @date     2018-05-09
+* @date     2018-05-12
 * @url      http://www.youngxj.cn
 * 切勿商用,切勿改版权,后果自付
 -->
@@ -59,8 +59,8 @@ define('Tools_url',$tools_settings['url']);
  *  id desc     添加顺序排行
  *  tools_number desc 使用次数排行
  */
-//$desc = $_COOKIE['desc']!='' ? deepEscape($_COOKIE['desc']) : 'priority';
-define('Desc', 'priority desc');
+$priority = $_COOKIE['sort_priority']!='' ? deepEscape($_COOKIE['sort_priority']) : 'priority desc';
+define('Desc', $priority);
 
 
 /*
@@ -84,7 +84,7 @@ $tools_links=$sp->findall(array('state'=>'0','type'=>'1'),"priority desc","*");
 
 /*分类导航*/
 $sp->table_name = "tools_list";
-$tools_navsort=$sp->query('select distinct tools_type from tools_list ORDER BY `tools_list`.`tools_type` DESC');//去重统计分类类别
+$tools_navsort=$sp->query('select distinct tools_type from tools_list ORDER BY `tools_list`.`tools_type` DESC');  //去重统计分类类别
 
 /*全局标题*/
 if($id){
@@ -181,15 +181,15 @@ href="http://browsehappy.com">立即升级</a>
     </div><!-- /.navbar-header -->
     <div id="navbar" class="collapse navbar-collapse">
       <ul class="nav navbar-nav navbar-right"> 
-        <?php if(constant("templates")=='1'){?>
+        <!-- 老版本导航<?php if(constant("templates")=='1'){?>
         <li class="<?php if(!isset($_GET['sort'])){echo 'active';}?>">
           <a href="<?php echo Tools_url;?>"><?php echo $tools_settings['name'];?></a>
         </li>
-        <?php foreach($tools_navsort as $age){?><!--分类导航目录优先-->
+        <?php foreach($tools_navsort as $age){?>分类导航目录优先
         <li <?php if($_GET['sort']==$age['tools_type']){echo 'class="active"';}?>>
           <a href="<?php echo Tools_url;?>/?sort=<?php echo $age['tools_type'];?>"><?php echo $age['tools_type'];?></a>
         </li>
-        <?php }}?>
+        <?php }}?> -->
         <?php foreach($tools_links as $age){?><!--自定义导航目录-->
         <li><a href="<?php echo $age['url'];?>" target="_blank"><?php echo $age['name'];?></a></li>
         <?php }?>

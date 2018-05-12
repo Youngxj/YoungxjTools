@@ -93,6 +93,7 @@
     }
 
     .links_ {
+        width:100%;
         background-color: #FFF;
         clear: both;
         height: auto;

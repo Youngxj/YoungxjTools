@@ -27,6 +27,21 @@ function curl_get_https($url){
     curl_close($curl);
     return $tmpInfo;
 }
+
+function generate_password( $length = 8 ) { 
+// 密码字符集，可任意添加你需要的字符 
+$chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'; 
+$password = ""; 
+for ( $i = 0; $i < $length; $i++ ) 
+{ 
+// 这里提供两种字符获取方式 
+// 第一种是使用 substr 截取$chars中的任意一位字符； 
+// 第二种是取字符数组 $chars 的任意元素 
+// $password .= substr($chars, mt_rand(0, strlen($chars) – 1), 1); 
+$password .= $chars[ mt_rand(0, strlen($chars) - 1) ]; 
+} 
+return $password; 
+}
 ?>
 <!DOCTYPE html>
 <html class="no-js">
@@ -110,6 +125,7 @@ function curl_get_https($url){
 			
 			$user_pw = md5($userpw.base64_encode('YoungxjTools'));
 
+			$user_token = md5(md5(md5(generate_password(20))));
 
 			$mysqli = @new mysqli($host, $user, $password, $database);
 
@@ -268,11 +284,13 @@ function curl_get_https($url){
 						`id` int(6) unsigned NOT NULL,
 						`user` text NOT NULL,
 						`password` text NOT NULL,
-						`type` int(30) NOT NULL
+						`type` int(30) NOT NULL,
+						`token` text NOT NULL,
+						`user_token` text NOT NULL
 					)  AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
-					INSERT INTO `tools_user` (`id`, `user`, `password`, `type`) VALUES
-					(1, '{$username}', '{$user_pw}', 1);
+					INSERT INTO `tools_user` (`id`, `user`, `password`, `type`,`token`,`user_token`) VALUES
+					(1, '{$username}', '{$user_pw}', 1,'','{$user_token}');
 
 					ALTER TABLE `tools_links`
 					ADD PRIMARY KEY (`id`);

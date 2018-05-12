@@ -2,7 +2,8 @@
 include 'header.php';
 include 'module.php';
 inc();
-
+$tools_up = new Model("tools_list");
+$tools_navsort=$tools_up->query('select distinct tools_type from tools_list ORDER BY `tools_list`.`tools_type` DESC');
 ?>
 <div id="content">
   <div id="content-header">
@@ -106,14 +107,43 @@ inc();
               <div class="col-sm-9 col-md-9 col-lg-10">
                 <div class="row">
                   <div class="col-md-6">
+                    <select class="form-control" name="tools_type" id="select_form">
+                      <?php foreach($tools_navsort as $age){?>
+                      <option><?php echo $age['tools_type'];?></option>
+                      <?php }?>
+                      <option id="custom" value="custom">自定义类别</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group" id="custom_form" style="display:none;">
+              <label for="" class="col-sm-3 col-md-3 col-lg-2 control-label">自定义类别：</label>
+              <div class="col-sm-9 col-md-9 col-lg-10">
+                <div class="row">
+                  <div class="col-md-6">
                     <div class="input-group input-group-sm">
                       <span class="input-group-addon"><i class="fa fa-sitemap"></i></span>
-                      <input type="text" placeholder="类别" class="form-control" name="tools_type" id="tools_type">
+                      <input type="text" placeholder="类别" class="form-control" id="tools_type" value="<?php echo $tools_up_id['tools_type'];?>">
                     </div>
                   </div>
                 </div>
               </div>
             </div>
+            <script src="js/jquery.min.js"></script>
+            <script>
+              $("#select_form").click(function(){
+                if($("#select_form").val()=='custom'){
+                  $("#select_form").removeAttr("name");
+                  $("#tools_type").attr("name",'tools_type');
+                  $("#custom_form").show();
+                }else{
+                  $("#tools_type").removeAttr("name");
+                  $("#select_form").attr("name",'tools_type');
+                  $("#custom_form").hide();
+                }
+              });
+            </script>
             <div class="form-group">
               <label for="" class="col-sm-3 col-md-3 col-lg-2 control-label">使用次数：</label>
               <div class="col-sm-9 col-md-9 col-lg-10">

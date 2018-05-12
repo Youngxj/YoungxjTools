@@ -38,7 +38,7 @@ function control(msg){
 	$('.control-msg').html(msg);
 }
 //tips
-  var sweetTitles = {
+var sweetTitles = {
 	x: 10,
 	y: 20,
 	tipElements: "a,span,img,div ",
@@ -83,7 +83,7 @@ $(function() {
 function ajax_love(id){
 	$.getJSON("ajax_love.php?id="+id,function(result){ 
 		if (result.state=="1") {
-          	$('#tools_love_'+id).css("color", "red");
+			$('#tools_love_'+id).css("color", "red");
 			layer.msg(result.msg);
 		}else if(result.state=="2"){
 			layer.msg(result.msg);
@@ -95,30 +95,53 @@ function ajax_love(id){
 //读取cookie
 function getCookie(c_name)
 {
-if (document.cookie.length>0)
-  {
-  c_start=document.cookie.indexOf(c_name + "=")
-  if (c_start!=-1)
-    { 
-    c_start=c_start + c_name.length+1 
-    c_end=document.cookie.indexOf(";",c_start)
-    if (c_end==-1) c_end=document.cookie.length
-    return unescape(document.cookie.substring(c_start,c_end))
-    } 
-  }
-return ""
+	if (document.cookie.length>0)
+	{
+		c_start=document.cookie.indexOf(c_name + "=")
+		if (c_start!=-1)
+		{ 
+			c_start=c_start + c_name.length+1 
+			c_end=document.cookie.indexOf(";",c_start)
+			if (c_end==-1) c_end=document.cookie.length
+				return unescape(document.cookie.substring(c_start,c_end))
+		} 
+	}
+	return ""
 }
 //设置cookie
 function setCookie(c_name,value,expiredays)
 {
-var exdate=new Date()
-exdate.setDate(exdate.getDate()+expiredays)
-document.cookie=c_name+ "=" +escape(value)+
-((expiredays==null) ? "" : ";expires="+exdate.toGMTString())+"; path=/";
+	var exdate=new Date()
+	exdate.setDate(exdate.getDate()+expiredays)
+	document.cookie=c_name+ "=" +escape(value)+
+	((expiredays==null) ? "" : ";expires="+exdate.toGMTString())+"; path=/";
 }
+
 //切换主题
 function temp(){if(getCookie('temp')=='1'){setCookie("temp","2","365");layer.msg('跳转中', {icon: 16,shade: 0.01});window.setTimeout(location.reload(),5000); }else{setCookie("temp","1","365");layer.msg('跳转中', {icon: 16,shade: 0.01});window.setTimeout(location.reload(),5000); }}
-
+//切换排序
+function priority(){
+	if(getCookie('sort_priority')=='priority desc'){
+		setCookie("sort_priority","tools_love desc","365");
+		layer.msg('跳转中', {icon: 16,shade: 0.01});window.setTimeout(location.reload(),5000); 
+		return;
+	}else if(getCookie('sort_priority')=='tools_love desc'){
+		setCookie("sort_priority","id desc","365");
+		layer.msg('跳转中', {icon: 16,shade: 0.01});window.setTimeout(location.reload(),5000); 
+		return;
+	}else if(getCookie('sort_priority')=='id desc'){
+		setCookie("sort_priority","tools_number desc","365");
+		layer.msg('跳转中', {icon: 16,shade: 0.01});window.setTimeout(location.reload(),5000); 
+		return;
+	}else if(getCookie('sort_priority')=='tools_number desc'){
+		setCookie("sort_priority","priority desc","365");
+		layer.msg('跳转中', {icon: 16,shade: 0.01});window.setTimeout(location.reload(),5000); 
+		return;
+	}else{
+		setCookie("sort_priority","priority desc","365");
+		return;
+	}
+}
 //返回顶部
 function gotop(){
 	h = $(window).height();
@@ -142,28 +165,5 @@ $(window).scroll(function(e){
 })
 //返回顶部end
 
-function getCookie(c_name)
-{
-if (document.cookie.length>0)
-  {
-  c_start=document.cookie.indexOf(c_name + "=")
-  if (c_start!=-1)
-    { 
-    c_start=c_start + c_name.length+1 
-    c_end=document.cookie.indexOf(";",c_start)
-    if (c_end==-1) c_end=document.cookie.length
-    return unescape(document.cookie.substring(c_start,c_end))
-    } 
-  }
-return ""
-}
-
-function setCookie(c_name,value,expiredays)
-{
-var exdate=new Date()
-exdate.setDate(exdate.getDate()+expiredays)
-document.cookie=c_name+ "=" +escape(value)+
-((expiredays==null) ? "" : ";expires="+exdate.toGMTString())+"; path=/";
-}
 
 
