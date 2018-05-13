@@ -20,6 +20,7 @@ if(getParam('domain') == 'update'){
     "priority" => getParam('priority'),
     "type" => getParam('type'),
     "state" => getParam('state'),
+    "tools_author" => getParam('tools_author'),
   );
   $tools_ups = $tools_up->update(array('id'=>$id),$config);
   if($tools_ups){
@@ -96,6 +97,19 @@ if(getParam('domain') == 'update'){
                     <div class="input-group input-group-sm">
                       <span class="input-group-addon"><i class="fa fa-wrench"></i></span>
                       <input type="text" placeholder="工具简介" class="form-control" name="subtitle" id="subtitle" value="<?php echo $tools_up_id['subtitle'];?>">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="" class="col-sm-3 col-md-3 col-lg-2 control-label">工具作者：</label>
+              <div class="col-sm-9 col-md-9 col-lg-10">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="input-group input-group-sm">
+                      <span class="input-group-addon"><i class="fa fa-wrench"></i></span>
+                      <input type="text" placeholder="工具作者" class="form-control" name="tools_author" id="tools_author" value="<?php echo $tools_up_id['tools_author'];?>">
                     </div>
                   </div>
                 </div>

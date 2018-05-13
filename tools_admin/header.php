@@ -91,37 +91,35 @@ include '../function.base.php';
       </div>
     </div>
 
+    <style>#content{min-height:800px;}</style>
     <div id="sidebar">
-      <div id="search">
-        <input type="text" placeholder="Search here..."/><button type="submit" class="tip-right" title="Search"><i class="fa fa-search"></i></button>
-      </div>  
       <ul>
-        <li class="active"><a href="index.php"><i class="fa fa-home"></i> <span>主页</span></a></li>
-        <li class="submenu">
+        <li <?php if(strpos($_SERVER['PHP_SELF'],'index')){echo 'class="active"';}?>><a href="index.php"><i class="fa fa-home"></i> <span>主页</span></a></li>
+        <li class="submenu open">
           <a href="#"><i class="fa fa-th-list"></i> <span>工具管理</span> <i class="arrow fa fa-chevron-right"></i></a>
           <ul>
-            <li><a href="tools_list.php">工具列表</a></li>
-            <li><a href="tools_inc.php">新增工具</a></li>
+            <li <?php if(strpos($_SERVER['PHP_SELF'],'tools_list')){echo 'class="active"';}?>><a href="tools_list.php" >工具列表</a></li>
+            <li <?php if(strpos($_SERVER['PHP_SELF'],'tools_inc')){echo 'class="active"';}?>><a href="tools_inc.php" >新增工具</a></li>
           </ul>
         </li>
-        <li class="submenu">
+        <li class="submenu open">
           <a href="#"><i class="fa fa-th-list"></i> <span>友情链接管理</span> <i class="arrow fa fa-chevron-right"></i></a>
           <ul>
-            <li><a href="links_list.php">友情链接列表</a></li>
-            <li><a href="links_inc.php">新增链接</a></li>
+            <li <?php if(strpos($_SERVER['PHP_SELF'],'links_list')){echo 'class="active"';}?>><a href="links_list.php">友情链接列表</a></li>
+            <li <?php if(strpos($_SERVER['PHP_SELF'],'links_inc')){echo 'class="active"';}?>><a href="links_inc.php">新增链接</a></li>
           </ul>
         </li>
         <li class="submenu">
           <a href="#"><i class="fa fa-th-list"></i> <span>时间轴管理</span> <i class="arrow fa fa-chevron-right"></i></a>
           <ul>
-            <li><a href="log_list.php">时间轴列表</a></li>
-            <li><a href="log_inc.php">新增时间轴</a></li>
+            <li <?php if(strpos($_SERVER['PHP_SELF'],'log_list')){echo 'class="active"';}?>><a href="log_list.php">时间轴列表</a></li>
+            <li <?php if(strpos($_SERVER['PHP_SELF'],'log_inc')){echo 'class="active"';}?>><a href="log_inc.php">新增时间轴</a></li>
           </ul>
         </li>
-        <li>
+        <li <?php if(strpos($_SERVER['PHP_SELF'],'talk_list')){echo 'class="active"';}?>>
           <a href="talk_list.php"><i class="fa fa-cog"></i> <span>留言管理</span></a>
         </li>
-        <li>
+        <li <?php if(strpos($_SERVER['PHP_SELF'],'settings')){echo 'class="active"';}?>>
           <a href="settings.php"><i class="fa fa-cog"></i> <span>网站基本信息配置</span></a>
         </li>
       </ul>

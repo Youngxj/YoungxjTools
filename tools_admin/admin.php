@@ -1,13 +1,13 @@
 <?php
 include 'header.php';
 $tools_user = new Model("tools_user");
-$user = $tools_user->find(array(),"","user,password");
+$user_token = $tools_user->find(array(),"","*");
 if(getParam('domain')=='update'){
   if (!getParam('user')||!getParam('password')) {
     exit("<script language='javascript'>alert('账号密码均不能为空');window.location.href='admin.php';</script>");
   }
 	$user = deepEscape(getParam('user'));
-  $password = md5(deepEscape(getParam('password')).base64_encode('YoungxjTools'));
+  $password = md5(md5(getParam('password')).md5($user_token['user_token']));
   $user_up = $tools_user->update(array('id'=>'1'),array('user'=>$user,'password'=>$password));
   if($user_up){
     exit("<script language='javascript'>alert('修改成功');window.location.href='admin.php';</script>");
@@ -43,7 +43,7 @@ if(getParam('domain')=='update'){
                   <div class="col-md-6">
                     <div class="input-group input-group-sm">
                       <span class="input-group-addon"><i class="fa fa-drivers-license-o"></i></span>
-                      <input type="text" placeholder="用户名" class="form-control" name="user" id="user" value="<?php echo $user['user'];?>">
+                      <input type="text" placeholder="用户名" class="form-control" name="user" id="user" value="<?php echo $user_token['user'];?>">
                     </div>
                   </div>
                 </div>

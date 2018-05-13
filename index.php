@@ -137,29 +137,29 @@ if(getParam('url')){
           <?php }?>
         </div>
       </div>
-    <?php }else{?>
-    <?php foreach ($tools_list as $age) {$toolsurl = Tools_url.'?url='.$age['tools_url'];?>
-    <div class="col-sm-6 col-md-4 col-lg-3 tool-item <?php if($age['tools_type']){echo pinyin($age['tools_type'], 'first');}else{echo 'qt';}?> <?php echo pinyin($age['title'], 'first');?>">
-      <a href="<?php echo $toolsurl;?>" target="_blank">
-        <div class="maple-tool-item image-shadow">
-          <span class="maple-tool-icon maple-tool-item-color<?php echo rand(1,6);?>"><?php echo mb_substr($age['title'],0,1,'utf-8');?></span>
-          <h3 class="maple-tool-name"><?php echo $age['title'];?></h3>
-          <span class="maple-tool-describe"><?php echo $age['explains'];?></span>
-          <div class="maple-tool-tags">
-            <span class="maple-tool-tag"  title="工具类型"><?php echo $age['tools_type'];?></span>
-            <span class="maple-tool-tag"  title="使用次数"><i class="fa fa-eye"></i> <?php echo $age['tools_number'];?></span>
-            <span class="maple-tool-tag"  title="点赞" onclick="ajax_love(<?php echo $age['id'];?>)" id="tools_love_<?php echo $age['id'];?>" <?php if ($_COOKIE["love_id_".$age['id']]) {echo 'style="color:red;"';}?>><i class="fa fa-heart"></i> <?php echo $age['tools_love'];?></span>
+      <?php }else{?>
+      <?php foreach ($tools_list as $age) {$toolsurl = Tools_url.'?url='.$age['tools_url'];?>
+      <div class="col-sm-6 col-md-4 col-lg-3 tool-item <?php if($age['tools_type']){echo pinyin($age['tools_type'], 'first');}else{echo 'qt';}?> <?php echo pinyin($age['title'], 'first');?>">
+        <a href="<?php echo $toolsurl;?>" target="_blank">
+          <div class="maple-tool-item image-shadow">
+            <span class="maple-tool-icon maple-tool-item-color<?php echo rand(1,6);?>"><?php echo mb_substr($age['title'],0,1,'utf-8');?></span>
+            <h3 class="maple-tool-name"><?php echo $age['title'];?></h3>
+            <span class="maple-tool-describe"><?php echo $age['explains'];?></span>
+            <div class="maple-tool-tags">
+              <span class="maple-tool-tag"  title="工具类型"><?php echo $age['tools_type'];?></span>
+              <span class="maple-tool-tag"  title="使用次数"><i class="fa fa-eye"></i> <?php echo $age['tools_number'];?></span>
+              <span class="maple-tool-tag"  title="点赞" onclick="ajax_love(<?php echo $age['id'];?>)" id="tools_love_<?php echo $age['id'];?>" <?php if ($_COOKIE["love_id_".$age['id']]) {echo 'style="color:red;"';}?>><i class="fa fa-heart"></i> <?php echo $age['tools_love'];?></span>
+            </div>
+            <span class="maple-tool-auth" title="工具作者"><i class="fa fa-user-circle-o"></i> <?php echo $age['tools_author'];?></span>
+            <span class="maple-tool-in" title="点击打开工具"><i class="fa fa-sign-in"></i> Open</span>
           </div>
-          <span class="maple-tool-auth" title="工具作者"><i class="fa fa-user-circle-o"></i> Youngxj</span>
-          <span class="maple-tool-in" title="点击打开工具"><i class="fa fa-sign-in"></i> Open</span>
-        </div>
-      </a>
+        </a>
+      </div>
+      <?php }?>
     </div>
-    <?php }?>
   </div>
-</div>
 
-<?php }?>
+  <?php }?>
 </div>
 
 <script type="text/javascript">

@@ -1,8 +1,8 @@
 <!--
 * @act      Tools
-* @version  1.1
+* @version  1.1.1
 * @author   youngxj
-* @date     2018-05-12
+* @date     2018-05-13
 * @url      http://www.youngxj.cn
 * 切勿商用,切勿改版权,后果自付
 -->
@@ -43,6 +43,23 @@ if($tools_settings['ua']){
     exit('<!DOCTYPE html><html><head><title>正在跳转，请稍等</title></head><body><p>您当前浏览器不支持或操作系统语言设置非中文,无法访问本站！</p></body></html>');
   }
 }
+
+if ($tools_settings['tz']='1') {
+  if(strpos($_SERVER['HTTP_USER_AGENT'], 'QQ/')!==false){
+    $a='http://'.$_SERVER['SERVER_NAME'].':'.$_SERVER["SERVER_PORT"].$_SERVER["REQUEST_URI"]; 
+    echo '<!DOCTYPE html>
+    <html>
+    <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>请使用浏览器打开</title>
+    <script src="https://open.mobile.qq.com/sdk/qqapi.js?_bid=152"></script>
+    <script type="text/javascript"> mqq.ui.openUrl({ target: 2,url: "'.$a.'"}); </script>
+    </head>
+    <body>'.$tools_settings['tz_msg'].'</body>
+    </html>';
+    exit;
+  }
+}
 /*QQ*/
 define('QQ', $tools_settings['qq']);
 
@@ -59,7 +76,22 @@ define('Tools_url',$tools_settings['url']);
  *  id desc     添加顺序排行
  *  tools_number desc 使用次数排行
  */
-$priority = $_COOKIE['sort_priority']!='' ? deepEscape($_COOKIE['sort_priority']) : 'priority desc';
+$tools_priority = $tools_settings['tools_priority'];
+if($tools_priority=='id desc'){
+  $priority = 'id desc';
+}elseif ($tools_priority=='priority desc') {
+  $priority = 'priority desc';
+}elseif ($tools_priority=='tools_love desc') {
+  $priority = 'tools_love desc';
+}elseif ($tools_priority=='tools_number desc') {
+  $priority = 'tools_number desc';
+}elseif ($tools_priority=='1') {
+  $priority = $_COOKIE['sort_priority']!='' ? deepEscape($_COOKIE['sort_priority']) : 'priority desc';
+}elseif ($tools_priority=='rand_priority') {
+  $arr = array('id desc','priority desc','tools_love desc','tools_number desc');
+  $priority = array_rand($arr,1);
+}
+
 define('Desc', $priority);
 
 

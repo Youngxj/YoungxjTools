@@ -64,6 +64,19 @@ $tools_navsort=$tools_up->query('select distinct tools_type from tools_list ORDE
               </div>
             </div>
             <div class="form-group">
+              <label for="" class="col-sm-3 col-md-3 col-lg-2 control-label">工具作者：</label>
+              <div class="col-sm-9 col-md-9 col-lg-10">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="input-group input-group-sm">
+                      <span class="input-group-addon"><i class="fa fa-wrench"></i></span>
+                      <input type="text" placeholder="工具作者" class="form-control" name="tools_author" id="tools_author">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
               <label for="" class="col-sm-3 col-md-3 col-lg-2 control-label">工具关键词：</label>
               <div class="col-sm-9 col-md-9 col-lg-10">
                 <div class="row">

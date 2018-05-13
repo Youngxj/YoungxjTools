@@ -18,7 +18,7 @@ if($miw_token){
 
 if (getParam('user')&&getParam('password')) {
   $user= getParam('user');
-  $pass= md5(getParam('password').base64_encode('YoungxjTools'));
+  $pass= md5(md5(getParam('password')).md5($user_token['user_token']));
   $row = $login->find(array('user'=>$user,'password'=>$pass),"","user,password");
   if($row){
     setcookie('cookie_user', $mw_token,time()+3600*24);
@@ -42,7 +42,7 @@ if (getParam('user')&&getParam('password')) {
   <!-- Bootstrap 核心 CSS 文件 -->
   <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
   <style>
-  body{background:url('//api.yum6.cn/soimg/soimg.php');background-repeat:no-repeat;background-attachment:fixed;}
+  body{background:url('//api.yum6.cn/360img');background-repeat:no-repeat;background-attachment:fixed;}
   /*web background*/
   .container{
     display:table;

@@ -36,6 +36,7 @@ function inc(){
       "priority" => getParam('priority'),
       "type" => getParam('type'),
       "state" => getParam('state'),
+      "tools_author" => getParam('tools_author'),
     );
     $tools_ups = $tools_up->create($config);
     if($tools_ups){

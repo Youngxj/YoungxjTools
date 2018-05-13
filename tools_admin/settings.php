@@ -20,6 +20,9 @@ if(getParam('domain')=='setting'){
     "qq" => getParam('qq'),
     "emails" => getParam('emails'),
     "search" => getParam('search'),
+    "tools_priority" => getParam('tools_priority'),
+    "tz" => getParam('tz'),
+    "tz_msg" => getParam('tz_msg'),
   );
   $state = $sett->update(array(),$config);
   var_dump($state);
@@ -210,6 +213,23 @@ if(getParam('domain')=='smtp'){
               </div>
             </div>
             <div class="form-group">
+              <label for="" class="col-sm-3 col-md-3 col-lg-2 control-label">类别：</label>
+              <div class="col-sm-9 col-md-9 col-lg-10">
+                <div class="row">
+                  <div class="col-md-6">
+                    <select class="form-control" name="tools_priority" id="tools_priority">
+                      <option value="id desc" <?php if($setting['tools_priority']=='id desc'){echo 'selected="selected"';}?>>默认排序</option>
+                      <option value="priority desc" <?php if($setting['tools_priority']=='priority desc'){echo 'selected="selected"';}?>>权重排序</option>
+                      <option value="tools_love desc" <?php if($setting['tools_priority']=='tools_love desc'){echo 'selected="selected"';}?>>喜欢排序</option>
+                      <option value="tools_number desc" <?php if($setting['tools_priority']=='tools_number desc'){echo 'selected="selected"';}?>>使用次数</option>
+                      <option value="1" <?php if($setting['tools_priority']=='1'){echo 'selected="selected"';}?>>前台控制排序</option>
+                      <option value="rand_priority" <?php if($setting['tools_priority']=='rand_priority'){echo 'selected="selected"';}?>>随机排序</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
               <label for="" class="col-sm-3 col-md-3 col-lg-2 control-label">ua开关：</label>
               <div class="col-sm-9 col-md-9 col-lg-10">
                 <div class="row">
@@ -243,6 +263,32 @@ if(getParam('domain')=='smtp'){
                     <div class="input-group input-group-sm">
                       <input type="radio"  name="search" value='1' id="search_mh" <?php if($setting['search']=='1'){echo 'checked="checked"';}?>>模糊搜索
                       <input type="radio"  name="search" value='2' id="search_jy" <?php if($setting['search']=='2'){echo 'checked="checked"';}?>>简约搜索
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="" class="col-sm-3 col-md-3 col-lg-2 control-label">防QQ拦截</label>
+              <div class="col-sm-9 col-md-9 col-lg-10">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="input-group input-group-sm">
+                      <input type="radio"  name="tz" value='1' id="tz" <?php if($setting['tz']=='1'){echo 'checked="checked"';}?>>开
+                      <input type="radio"  name="tz" value='2' id="tz" <?php if($setting['tz']=='2'){echo 'checked="checked"';}?>>关
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="" class="col-sm-3 col-md-3 col-lg-2 control-label">防QQ拦截消息</label>
+              <div class="col-sm-9 col-md-9 col-lg-10">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="input-group input-group-sm">
+                      <span class="input-group-addon"><i class="fa fa-area-chart"></i></span>
+                      <input type="text" placeholder="防QQ拦截消息" class="form-control" name="tz_msg" id="tz_msg" value="<?php echo $setting['tz_msg'];?>">
                     </div>
                   </div>
                 </div>
