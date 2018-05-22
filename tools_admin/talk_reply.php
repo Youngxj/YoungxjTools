@@ -1,6 +1,10 @@
 <?php
 include 'header.php';
 $talk_reply = new Model("tools_talk");
+$emails = new Model("tools_smtp");
+$sett = new Model("tools_settings");
+$setting = $sett->find(array(),"","*");
+$emails_val = $emails->find(array("id"=>1),"","*");
 if(getParam('id')){
   $id=getParam('id');
   $talk_reply_id = $talk_reply->find(array('id'=>$id),"","*");
@@ -8,18 +12,18 @@ if(getParam('id')){
 $name = getParam('name');
 if(getParam('domain') == 'reply'){
   $config = array(
-    "name" => 'Youngxj',
+    "name" => $emails_val['fromname'],
     "content" => '@'.$name.'：'.getParam('content'),
     "times" => date('Y-m-d H:i:s'),
     "state" => getParam('state'),
-    "emails" => 'admin@youngxj.com',
+    "emails" => $emails_val['smtp_from'],
     "ip" => real_ip(),
   );
   $talk_replys = $talk_reply->create($config);
   if($talk_replys){
     include 'email.php';
     $mail->addAddress(getParam('user_emails'),'');
-    $mail->Subject = '收到一条来自YoungxjTools的回复';
+    $mail->Subject = $emails_val['sub'];
     $mail->Body = '<div id="mailContentContainer" style="font-size: 14px; padding: 0px; height: auto; min-height: auto; font-family: &quot;lucida Grande&quot;, Verdana; position: relative; zoom: 1; margin-right: 170px;">                <style type="text/css"> .qmbox{margin:0;padding:0;font-family:微软雅黑;background-color:#fff}
     .qmbox a{text-decoration:none;}
     .qmbox .box{position:relative;max-width:100%;padding:0;margin:0 auto;border:1px solid #ccc;font-size:13px;color:#333;}
@@ -46,7 +50,7 @@ if(getParam('domain') == 'reply'){
     .qmbox .need{background:#fa9d00;}
     .qmbox .noneed{background:#3784e0;}
     .qmbox .footer{width:100%;height:10px;padding-top:20px;background:url("http://www.youngxj.cn/content/plugins/kl_sendmail/bian.jpg") repeat-x left bottom;}
-    </style><div class="qmbox"><div class="box"><div class="header"></div><div class="content"><p class="no_indent" style="color:#383838">评论《'.getParam("user_content").'》有了最新的回复</p><br><p style="line-height:25px;padding:10px;background:#5C96BE;border-radius:4px;color:#fff;">'.getParam("content").'</p><p class="no_indent"><span>评论作者：Youngxj</span><span>邮件地址：admin@youngxj.com</span><span>评论者ip：(保障用户隐私)</span></p><table cellspacing="0" class="table">	</table><div class="btnn"><a href="http://tools.yum6.cn/about" target="_blank">查看回复</a><a href="http://tools.yum6.cn" target="_blank">查看YoungxjTools</a><a href="http://www.youngxj.cn" target="_blank">杨小杰博客</a></div></div><div class="footer clear"></div></div></div>  <!--<![endif]--><style></style>  </div>';
+    </style><div class="qmbox"><div class="box"><div class="header"></div><div class="content"><p class="no_indent" style="color:#383838">评论《'.getParam("user_content").'》有了最新的回复</p><br><p style="line-height:25px;padding:10px;background:#5C96BE;border-radius:4px;color:#fff;">'.getParam("content").'</p><p class="no_indent"><span>评论作者：'.$emails_val['fromname'].'</span><span>邮件地址：'.$emails_val['username'].'</span><span>评论者ip：(保障用户隐私)</span></p><table cellspacing="0" class="table">	</table><div class="btnn"><a href="'.$setting['url'].'/about.php" target="_blank">查看回复</a><a href="'.$setting['url'].'" target="_blank">查看YoungxjTools</a><a href="http://www.youngxj.cn" target="_blank">杨小杰博客</a></div></div><div class="footer clear"></div></div></div>  <!--<![endif]--><style></style>  </div>';
     $status = $mail->send();
     if(!$status){echo '<script type="text/javascript">alert("发信失败");</script>';}
     echo '<script type="text/javascript">alert("回复成功");window.location.href="talk_list.php";</script>'; 

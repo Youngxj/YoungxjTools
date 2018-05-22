@@ -23,6 +23,7 @@ if(getParam('domain')=='setting'){
     "tools_priority" => getParam('tools_priority'),
     "tz" => getParam('tz'),
     "tz_msg" => getParam('tz_msg'),
+    "templates" => getParam('templates'),
   );
   $state = $sett->update(array(),$config);
   var_dump($state);
@@ -39,7 +40,7 @@ if(getParam('domain')=='smtp'){
     "fromname" => getParam('fromname'),
     "username" => getParam('username'),
     "password" => getParam('password'),
-    "smtp_from" => getParam('smtp_from'),
+    "add_email" => getParam('add_email'),
     "sub" => getParam('sub'),
   );
   $state = $setsmtp->update(array("1"),$config);
@@ -294,6 +295,20 @@ if(getParam('domain')=='smtp'){
                 </div>
               </div>
             </div>
+            <div class="form-group">
+              <label for="" class="col-sm-3 col-md-3 col-lg-2 control-label">默认主题：</label>
+              <div class="col-sm-9 col-md-9 col-lg-10">
+                <div class="row">
+                  <div class="col-md-6">
+                    <select class="form-control" name="templates" id="templates">
+                      <option value="0" <?php if($setting['templates']!='1'&&$setting['templates']!='2'){echo 'selected="selected"';}?>>默认</option>
+                      <option value="1" <?php if($setting['templates']=='1'){echo 'selected="selected"';}?>>tool.lu样式</option>
+                      <option value="2" <?php if($setting['templates']=='2'){echo 'selected="selected"';}?>>流行样式</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
             <div class="form-actions">
               <input type="submit" value="修改" class="btn btn-primary" id="open-dialog">
             </div>
@@ -379,13 +394,13 @@ if(getParam('domain')=='smtp'){
               </div>
             </div>
             <div class="form-group">
-              <label for="" class="col-sm-3 col-md-3 col-lg-2 control-label">发件人</label>
+              <label for="" class="col-sm-3 col-md-3 col-lg-2 control-label">收件人(请勿与发件人相同)</label>
               <div class="col-sm-9 col-md-9 col-lg-10">
                 <div class="row">
                   <div class="col-md-6">
                     <div class="input-group input-group-sm">
                       <span class="input-group-addon"><i class="fa fa-hdd-o"></i></span>
-                      <input type="text" placeholder="发件人" class="form-control" name="smtp_from" id="smtp_from" value="<?php echo $smtp['smtp_from'];?>">
+                      <input type="text" placeholder="收件人" class="form-control" name="add_email" id="add_email" value="<?php echo $smtp['add_email'];?>">
                     </div>
                   </div>
                 </div>

@@ -44,7 +44,7 @@ if($tools_settings['ua']){
   }
 }
 
-if ($tools_settings['tz']='1') {
+if ($tools_settings['tz']=='1') {
   if(strpos($_SERVER['HTTP_USER_AGENT'], 'QQ/')!==false){
     $a='http://'.$_SERVER['SERVER_NAME'].':'.$_SERVER["SERVER_PORT"].$_SERVER["REQUEST_URI"]; 
     echo '<!DOCTYPE html>
@@ -101,7 +101,11 @@ define('Desc', $priority);
  *  2 流行样式
  */
 
-define('templates', deepEscape($_COOKIE['temp']));
+$temp = deepEscape($_COOKIE['temp']);
+if(!isset($_COOKIE['temp'])){if ($tools_settings['templates']=='1') {setcookie('temp','1');$temp = '1';}if ($tools_settings['templates']=='2') {setcookie('temp','2');$temp = '2';}}
+define('templates', $temp);
+
+
 
 /**
  * 搜索框样式
@@ -224,9 +228,9 @@ href="http://browsehappy.com">立即升级</a>
         <?php }}?> -->
         <?php foreach($tools_links as $age){?><!--自定义导航目录-->
         <li><a href="<?php echo $age['url'];?>" target="_blank"><?php echo $age['name'];?></a></li>
-        <?php }?>
-        <br/>
-        <?php if (search=='2') {?>
+      <?php }?>
+      <br/>
+      <?php if (search=='2') {?>
         <!--搜索框-->
         <div style="float: inherit;text-align:center;">
           <form action="<?php echo Tools_url;?>/index.php" method="get" id="search">
@@ -235,8 +239,8 @@ href="http://browsehappy.com">立即升级</a>
           </form>
         </div>
         <!--搜索框end-->
-        <?php }?>
-      </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container -->
+      <?php }?>
+    </ul>
+  </div><!-- /.navbar-collapse -->
+</div><!-- /.container -->
 </nav>

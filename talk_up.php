@@ -50,21 +50,7 @@ if (getParam('name')&&getParam('email')&&getParam('content')&&getParam('check')&
     $arr = array ('state'=>'false','msg'=>'该评论已存在');
     echoJson(json_encode($arr));
   }
-  //$sql = "INSERT INTO tools_talk (name,emails,content,times)VALUES ('".$name."', '".$email."','".$content."','".$date."');";
-  //redis开始
-  // if($redis->exists($key)){  //检测key是否存在
-  //   $redis->incr($key);  //将value数字增一
-  //   if($redis->get($key) >= 1){  //取出value并判断是否大于或等于一
-  //     $redis->incr($key); //将value数字增一
-  //     $redis->expire($key,60);  //设置过期时间三秒
-  //     $arr = array ('state'=>'error','msg'=>'提交过快');
-  //     echoJson(json_encode($arr));
-  //   }  
-  // }else{  //如果key不存在
-  //   $redis->set($key,1); //首次访问+1
-  //   $redis->expire($key,60);  //设置过期时间三秒
-  // }
-  //redis结束
+
   $newrow = array(
     'name' => $name,
     'content' => $content,
@@ -74,7 +60,7 @@ if (getParam('name')&&getParam('email')&&getParam('content')&&getParam('check')&
   );
   $smtp = new Model("tools_smtp");
   $smtp_value = $smtp->find(array(),"","*");
-  if ($smtp_value['host']!=''&&$smtp_value['port']!=''&&$smtp_value['fromname']!=''&&$smtp_value['username']!=''&&$smtp_value['password']!='')
+  if ($smtp_value['host']!=''&&$smtp_value['port']!=''&&$smtp_value['fromname']!=''&&$smtp_value['username']!=''&&$smtp_value['password']!=''&&$smtp_value['add_email']!=''&&$smtp_value['sub']!='')
   {
     $smtp_state = '1';
   }
@@ -83,7 +69,9 @@ if (getParam('name')&&getParam('email')&&getParam('content')&&getParam('check')&
   if ($up_talk&&$smtp_state == '1') 
   {
     include 'email.php';
-    $mail->addAddress($email,'');
+    $sett = new Model("tools_settings");
+    $setting = $sett->find(array(),"","*");
+    $mail->addAddress($emails_val['add_email'],'');
     $mail->Subject = 'YoungxjTools收到一条来自'.$name.'的评论';
     $mail->Body = '<div id="mailContentContainer" style="font-size: 14px; padding: 0px; height: auto; min-height: auto; font-family: &quot;lucida Grande&quot;, Verdana; position: relative; zoom: 1; margin-right: 170px;">                <style type="text/css"> .qmbox{margin:0;padding:0;font-family:微软雅黑;background-color:#fff}
     .qmbox a{text-decoration:none;}
@@ -111,7 +99,7 @@ if (getParam('name')&&getParam('email')&&getParam('content')&&getParam('check')&
     .qmbox .need{background:#fa9d00;}
     .qmbox .noneed{background:#3784e0;}
     .qmbox .footer{width:100%;height:10px;padding-top:20px;background:url("http://www.youngxj.cn/content/plugins/kl_sendmail/bian.jpg") repeat-x left bottom;}
-    </style><div class="qmbox"><div class="box"><div class="header"></div><div class="content"><p class="no_indent" style="color:#383838">YoungxjTools收到一条来自'.$name.'的评论</p><br><p style="line-height:25px;padding:10px;background:#5C96BE;border-radius:4px;color:#fff;">'.$content.'</p><p class="no_indent"><span>评论作者：'.$name.'</span><span>邮件地址：'.$email.'</span><span>评论者ip：'.real_ip().'</span></p><table cellspacing="0" class="table">	</table><div class="btnn"><a href="http://tools.yum6.cn/tools_admin/talk_list.php" target="_blank">审核回复</a><a href="http://tools.yum6.cn" target="_blank">查看YoungxjTools</a><a href="http://www.youngxj.cn" target="_blank">杨小杰博客</a></div></div><div class="footer clear"></div></div></div>  <!--<![endif]--><style></style>  </div>';
+    </style><div class="qmbox"><div class="box"><div class="header"></div><div class="content"><p class="no_indent" style="color:#383838">YoungxjTools收到一条来自'.$name.'的评论</p><br><p style="line-height:25px;padding:10px;background:#5C96BE;border-radius:4px;color:#fff;">'.$content.'</p><p class="no_indent"><span>评论作者：'.$name.'</span><span>邮件地址：'.$email.'</span><span>评论者ip：'.real_ip().'</span></p><table cellspacing="0" class="table">	</table><div class="btnn"><a href="'.$setting['url'].'/tools_admin/talk_list.php" target="_blank">审核回复</a><a href="'.$setting['url'].'" target="_blank">查看YoungxjTools</a><a href="http://www.youngxj.cn" target="_blank">杨小杰博客</a></div></div><div class="footer clear"></div></div></div>  <!--<![endif]--><style></style>  </div>';
     $status = $mail->send();
     if($status){
       ok();

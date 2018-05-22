@@ -45,7 +45,7 @@ $mail->Password = $emails_val['password'];
 
 //设置发件人邮箱地址 这里填入上述提到的“发件人邮箱”
 
-$mail->From = $emails_val['smtp_from'];
+$mail->From = $emails_val['username'];
 
 //邮件正文是否以html方式发送  
 $mail->isHTML(true); 
