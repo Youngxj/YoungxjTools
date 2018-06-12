@@ -1,6 +1,11 @@
 <?php
+ob_start();
+include '../function.base.php';
 require_once  ("../Mcrypt.class.php");
 require_once  ("../Model.php");
+if(!isset($_COOKIE['cookie_user'])){
+  exit("<script language='javascript'>window.location.href='login.php';</script>");
+}
 $login = new Model("tools_user");
 $user_token = $login->find(array('id'=>'1'),"","*");
 $miw_token = Mcrypt::decode($_COOKIE['cookie_user'],$user_token['user_token']);
@@ -8,7 +13,7 @@ $miw_token = Mcrypt::decode($_COOKIE['cookie_user'],$user_token['user_token']);
 if(!$miw_token){
   exit("<script language='javascript'>window.location.href='login.php';</script>");
 }
-include '../function.base.php';
+
 ?>
 <!DOCTYPE html>
 <html lang="zh-cn">
