@@ -50,10 +50,10 @@
 
 	<?php
 	$id="xx"; //后台生成的工具id
-	include "../header.php";
+	include "../../header.php";
 	?>
 	这是你的主体
-	<?php include '../footer.php';?>
+	<?php include '../../footer.php';?>
 
 2. 问：伪静态规则有没有特别的要求？
 
