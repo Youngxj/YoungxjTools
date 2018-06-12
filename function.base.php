@@ -1,5 +1,8 @@
 <?php
 error_reporting(0);
+
+define(VERSION, '1.2');
+
 function real_ip(){
   //获取用户真实IP
   $ip = $_SERVER['REMOTE_ADDR'];
@@ -39,27 +42,6 @@ function encryption($echo = '0',$string = 'YoungxjTools'){
   if(!isset($_SERVER['HTTP_REFERER']) || $_SERVER['HTTP_REFERER']==''){//判断来路为空
     exit();
   }
-}
-?>
-<?php
-/**
- * 深度转义数据
- * @param array $input  待转义的数组，$_GET,$_POST
- * @return array        处理过的数组
- */
-function deepEscape($input){
-  foreach ($input as $key => $value) {
-    if (is_array($value)) {
-      //递归调用
-      $input[$key] = deepEscape($value);
-    }else{
-      //转义
-      $input[$key] = addslashes($value);
-      // HTML实体
-      $input[$key] = htmlClean($value);
-    }
-  }
-  return $input;
 }
 ?>
 
@@ -143,32 +125,74 @@ function ipadmin($ip,$ip_admin){
  * 页面跳转
  */
 function Jump($directUrl) {
-    header("Location: $directUrl");
-    exit;
+  header("Location: $directUrl");
+  exit;
 }
 ?>
+
+
 <?php
 //相关工具
-function more($name,$type,$url){?>
-<style>
+function mores($name,$type,$url){?>
+  <style>
   .more ul{list-style:none;margin:0;padding-right:40px;}
-  .more li{display:inline;white-space:nowrap;}
+  .more li{display:inline;padding: 0px 2px 0px 2px;}
 </style>
 <div class="table text-center more">
   <ul>
-    <?php if($type == 'url'){?>
-    <?php if($name!='urlblast'){?><li><a href="<?php echo $url;?>/urlblast" id="more" >子域名爆破</a></li><?php }?>
-    <?php if($name!='dns'){?><li><a href="<?php echo $url;?>/dns" id="more">Dns解析记录</a></li><?php }?>
-    <?php if($name!='ping'){?><li><a href="<?php echo $url;?>/ping/" id="more">超级Ping</a></li><?php }?>
-    <?php if($name!='StatusCode'){?><li><a href="<?php echo $url;?>/StatusCode/" id="more">网站状态码</a></li><?php }?>
-    <?php if($name!='dwzurl'){?><li><a href="<?php echo $url;?>/dwzurl/" id="more">短网址生成</a></li><?php }?>
-    <?php if($name!='icp'){?><li><a href="<?php echo $url;?>/icp/" id="more">ICP备案查询</a></li><?php }?>
-    <?php if($name!='whois'){?><li><a href="<?php echo $url;?>/whois/" id="more">Whios查询</a></li><?php }?>
-    <?php if($name!='rank'){?><li><a href="<?php echo $url;?>/rank/" id="more">权重查询</a></li><?php }?>
-    <?php }elseif($type == 'ip'){?>
-    <?php if($name!='ip'){?><li><a href="<?php echo $url;?>/ip/" id="more" >IP地址查询</a></li><?php }?>
-    <?php if($name!='portblast'){?><li><a href="<?php echo $url;?>/portblast/" id="more">IP端口扫描</a></li><?php }?>
-    <?php }?>
+    <li>更多相关工具:</li>
+    <?php foreach($type as $ag){
+      if($name!=$ag['tools_url']){echo '<li><a href="'.$url.'/'.$ag['tools_url'].'" id="more" >'.$ag['title'].'</a></li>';}
+    }?>
   </ul>
 </div>
 <?php }?>
+
+<?php
+function generate_password( $length = 8 ) { 
+  $chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'; 
+  $password = ""; 
+  for ( $i = 0; $i < $length; $i++ ) 
+  { 
+    $password .= $chars[ mt_rand(0, strlen($chars) - 1) ]; 
+  } 
+  return $password; 
+}
+?>
+
+<?php
+function curl_request($url,$post='',$cookie='', $returnCookie=0,$ua='Mozilla/5.0 (compatible; Baiduspider/2.0; +http://www.baidu.com/search/spider.html)',$referer='http://baidu.com/'){
+  //curl模拟请求
+  //参数1：访问的URL，参数2：post数据(不填则为GET)，参数3：提交的$cookies,参数4：是否返回$cookies，参数5：自定义UA，参数6：自定义来路
+  $curl = curl_init();
+  curl_setopt($curl, CURLOPT_URL, $url);
+  curl_setopt($curl, CURLOPT_USERAGENT, $ua);
+  curl_setopt($curl, CURLOPT_FOLLOWLOCATION, 1);
+  curl_setopt($curl, CURLOPT_AUTOREFERER, 1);
+  curl_setopt($curl, CURLOPT_REFERER, $referer);
+  if($post) {
+    curl_setopt($curl, CURLOPT_POST, 1);
+    curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($post));
+  }
+  if($cookie) {
+    curl_setopt($curl, CURLOPT_COOKIE, $cookie);
+  }
+  curl_setopt($curl, CURLOPT_HEADER, $returnCookie);
+  curl_setopt($curl, CURLOPT_TIMEOUT, 10);
+  curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+  $data = curl_exec($curl);
+  if (curl_errno($curl)) {
+    return curl_error($curl);
+  }
+  curl_close($curl);
+  if($returnCookie){
+    list($header, $body) = explode("\r\n\r\n", $data, 2);
+    preg_match_all("/Set\-Cookie:([^;]*);/", $header, $matches);
+    $info['cookie']  = substr($matches[1][0], 1);
+    $info['content'] = $body;
+    return $info;
+  }else{
+    return $data;
+  }
+}
+?>

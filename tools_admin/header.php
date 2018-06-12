@@ -1,4 +1,4 @@
-<?php 
+<?php
 require_once  ("../Mcrypt.class.php");
 require_once  ("../Model.php");
 $login = new Model("tools_user");
@@ -15,6 +15,9 @@ include '../function.base.php';
 <head>
   <title>Tools Admin</title>
   <meta charset="UTF-8" />
+  <script src="js/jquery.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="layui/css/layui.css">
+  <script type="text/javascript" src="layui/layui.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="css/bootstrap.min.css" />
   <link rel="stylesheet" href="css/font-awesome.css" />

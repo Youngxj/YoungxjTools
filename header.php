@@ -1,8 +1,8 @@
 <!--
 * @act      Tools
-* @version  1.1.1
+* @version  1.2
 * @author   youngxj
-* @date     2018-05-13
+* @date     2018-06-13
 * @url      http://www.youngxj.cn
 * 切勿商用,切勿改版权,后果自付
 -->
@@ -86,7 +86,7 @@ if($tools_priority=='id desc'){
 }elseif ($tools_priority=='tools_number desc') {
   $priority = 'tools_number desc';
 }elseif ($tools_priority=='1') {
-  $priority = $_COOKIE['sort_priority']!='' ? deepEscape($_COOKIE['sort_priority']) : 'priority desc';
+  $priority = $_COOKIE['sort_priority']!='' ? htmlClean($_COOKIE['sort_priority']) : 'priority desc';
 }elseif ($tools_priority=='rand_priority') {
   $arr = array('id desc','priority desc','tools_love desc','tools_number desc');
   $priority = array_rand($arr,1);
@@ -101,7 +101,7 @@ define('Desc', $priority);
  *  2 流行样式
  */
 
-$temp = deepEscape($_COOKIE['temp']);
+$temp = $_COOKIE['temp'];
 if(!isset($_COOKIE['temp'])){if ($tools_settings['templates']=='1') {setcookie('temp','1');$temp = '1';}if ($tools_settings['templates']=='2') {setcookie('temp','2');$temp = '2';}}
 define('templates', $temp);
 
@@ -127,12 +127,14 @@ if($id){
   $sp->table_name = "tools_list";
   /*查询工具id相关数据*/
   $as=$sp->find(array("id = '$id'"),"id desc","*");
+  $tools_type = $as['tools_type'];
+  $navs = $sp->findall(array("tools_type = '$tools_type'"),"id desc","*");
   $title = $as['title'];
   $keywords = $as['keyword'];
   $subtitle = $as['subtitle'];
   $explains = $as['explains'];
   /*记录访问次数*/
-  $numbers = $sp->incr(array('id'=>deepEscape($id)),'tools_number');
+  $numbers = $sp->incr(array('id'=>$id),'tools_number');
   
 }else{
   $title = $tools_settings['title'];

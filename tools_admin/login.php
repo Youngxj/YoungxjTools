@@ -1,6 +1,6 @@
 <?php
 @header('Content-Type: text/html; charset=UTF-8');
-
+ob_start();
 require_once  ("../Mcrypt.class.php");
 require_once  ("../Model.php");
 include "../function.base.php";
@@ -26,10 +26,10 @@ if (getParam('user')&&getParam('password')) {
     if($inc_token){
       exit("<script language='javascript'>window.location.href='index.php';</script>");
     }else{
-      exit("<script language='javascript'>alert('发生未知错误请重新登录！');window.location.href='login.php';</script>");
+      exit("<script language='javascript'>layui.use('layer', function(){alert('未知错误，请重新登录');});window.location.href='login.php';</script>");
     }
   }else{
-    exit("<script language='javascript'>alert('用户名或密码不正确！');window.location.href='login.php';</script>");
+    exit("<script language='javascript'>layui.use('layer', function(){alert('用户名或密码不正确');});window.location.href='login.php';</script>");
   }
 }
 ?>
@@ -42,7 +42,7 @@ if (getParam('user')&&getParam('password')) {
   <!-- Bootstrap 核心 CSS 文件 -->
   <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
   <style>
-  body{background:url('//api.yum6.cn/360img');background-repeat:no-repeat;background-attachment:fixed;}
+  body{background:url('//api.yum6.cn/360img');background-size: 100%;background-repeat:no-repeat;background-attachment:fixed;}
   /*web background*/
   .container{
     display:table;

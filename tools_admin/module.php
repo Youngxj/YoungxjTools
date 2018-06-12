@@ -13,9 +13,9 @@ function ToolsList(){
     $id = getParam('id');
     $tools_delete = $tools_up->delete(array('id'=>$id));
     if($tools_delete){
-      echo '<script type="text/javascript">alert("删除成功");window.location.href="tools_list.php";</script>'; 
+      echo msgEcho('删除成功','tools_list');
     }else{
-      echo '<script type="text/javascript">alert("删除失败");window.location.href="tools_list.php";</script>'; 
+      echo msgEcho('删除失败','tools_list');
     }
   }
 }
@@ -40,9 +40,9 @@ function inc(){
     );
     $tools_ups = $tools_up->create($config);
     if($tools_ups){
-      echo '<script type="text/javascript">alert("增加成功");window.location.href="tools_list.php";</script>'; 
+      echo msgEcho('增加成功','tools_list');
     }else{
-      echo '<script type="text/javascript">alert("失败");</script>'; 
+      echo msgEcho('失败');
     }
   }
 }
@@ -62,27 +62,29 @@ function TalkList(){
     $id = getParam('id');
     $talk_show = $talk->update(array('id'=>$id),array('state'=>'1'));
     if($talk_show){
-      echo '<script type="text/javascript">alert("显示成功");window.location.href="talk_list.php";</script>'; }
+      echo msgEcho('成功显示','talk_list');
     }
-    if(getParam('domain') == 'hide'){
+  }
+  if(getParam('domain') == 'hide'){
+    $id = getParam('id');
+    $talk_hide = $talk->update(array('id'=>$id),array('state'=>'0'));
+    if($talk_hide){
+      echo msgEcho('成功隐藏','talk_list');
+    }
+    if(getParam('domain') == 'delete'){
       $id = getParam('id');
-      $talk_hide = $talk->update(array('id'=>$id),array('state'=>'0'));
-      if($talk_hide){
-        echo '<script type="text/javascript">alert("隐藏成功");window.location.href="talk_list.php";</script>'; }
+      $talk_delete = $talk->delete(array('id'=>$id));
+      if($talk_delete){
+        echo msgEcho('成功删除','talk_list');
+      }else{
+        echo msgEcho('删除失败','talk_list');
       }
-      if(getParam('domain') == 'delete'){
-        $id = getParam('id');
-        $talk_delete = $talk->delete(array('id'=>$id));
-        if($talk_delete){
-          echo '<script type="text/javascript">alert("删除成功");window.location.href="talk_list.php";</script>'; 
-        }else{
-          echo '<script type="text/javascript">alert("删除失败");window.location.href="talk_list.php";</script>'; 
-        }
-      } 
-    }
+    } 
+  }
+}
 
-    function LogList(){
-      $time_log = new Model("tools_log");
+function LogList(){
+  $time_log = new Model("tools_log");
   $log_list = $time_log->findall(array(),"id desc","*");//查询多条数据
   if($log_list){
     echo '<thead><tr><th>Id</th><th>用户</th><th>内容</th><th>时间</th><th>操作</th></tr></thead><tbody>';
@@ -95,9 +97,9 @@ function TalkList(){
     $id = getParam('id');
     $log_delete = $time_log->delete(array('id'=>$id));
     if($log_delete){
-      echo '<script type="text/javascript">alert("删除成功");window.location.href="log_list.php";</script>'; 
+      echo msgEcho('成功删除','log_list');
     }else{
-      echo '<script type="text/javascript">alert("删除失败");window.location.href="log_list.php";</script>'; 
+      echo msgEcho('成功删除','log_list');
     }
   }
 }
@@ -113,9 +115,9 @@ function log_inc(){
     );
     $log_ups = $log_up->create($config);
     if($log_ups){
-      echo '<script type="text/javascript">alert("增加成功");window.location.href="log_list.php";</script>'; 
+      echo msgEcho('增加成功','log_list');
     }else{
-      echo '<script type="text/javascript">alert("失败");</script>'; 
+      echo msgEcho('失败');
     }
   }
 }
@@ -139,9 +141,9 @@ function LinksList(){
     $id = getParam('id');
     $links_delete = $links_up->delete(array('id'=>$id));
     if($links_delete){
-      echo '<script type="text/javascript">alert("删除成功");window.location.href="links_list.php";</script>'; 
+      echo msgEcho('成功删除','links_list');
     }else{
-      echo '<script type="text/javascript">alert("删除失败");window.location.href="links_list.php";</script>'; 
+      echo msgEcho('删除失败','links_list');
     }
   } 
 }
@@ -159,9 +161,20 @@ function links_inc(){
     );
     $links_ups = $links_up->create($config);
     if($links_ups){
-      echo '<script type="text/javascript">alert("增加成功");window.location.href="links_list.php";</script>'; 
+      echo msgEcho('增加成功','links_list');
     }else{
-      echo '<script type="text/javascript">alert("失败,有可能是你的内容未更改");</script>'; 
+      echo msgEcho('失败[可能你的内容未修改]');
     }
   }
+}
+
+
+function msgEcho($msg,$go=''){
+  $html_js =  "<script type='text/javascript'>";
+  $html_js.= "alert('".$msg."');";
+  if($go){
+    $html_js.= "window.location.href='".$go.".php';";
+  }
+  $html_js.= "</script>";
+  return $html_js;
 }

@@ -11,7 +11,7 @@ $sp->table_name = "tools_list";
 //地址跳转
 if(getParam('url')){
 
-  $tools_url=$sp->find(array("tools_url= '".deepEscape(getParam('url'))."'"),constant("Desc"),"*");
+  $tools_url=$sp->find(array("tools_url= '".getParam('url')."'"),constant("Desc"),"*");
   //链接类型0内链1外链
   if($tools_url['type']=='0'){
     $url = Tools_url.'/'.$tools_url['tools_url'];
@@ -28,12 +28,12 @@ if(getParam('url')){
   if(getParam('sort')){
     //分类
     echo '<style>#choose-tool{display:none;}</style>';
-    $tools_list=$sp->findall(array("tools_type= '".deepEscape(getParam('sort'))."'and state=0"),constant("Desc"),"*");//查询分类
+    $tools_list=$sp->findall(array("tools_type= '".getParam('sort')."'and state=0"),constant("Desc"),"*");//查询分类
   }elseif(getParam('query')){
     //查询工具
     echo '<style>.search-fr{display:none;}</style>';
     //查询标题
-    $tools_list=$sp->findall(array("title like '%".deepEscape(getParam('query'))."%'"),constant("Desc"),"*");
+    $tools_list=$sp->findall(array("title like '%".getParam('query')."%'"),constant("Desc"),"*");
   }else{
     //默认输出所有工具
     $tools_list=$sp->findall(array('state'=>'0'),constant("Desc"),"*");

@@ -30,17 +30,17 @@ function curl_get_https($url){
 
 function generate_password( $length = 8 ) { 
 // 密码字符集，可任意添加你需要的字符 
-$chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'; 
-$password = ""; 
-for ( $i = 0; $i < $length; $i++ ) 
-{ 
+	$chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'; 
+	$password = ""; 
+	for ( $i = 0; $i < $length; $i++ ) 
+	{ 
 // 这里提供两种字符获取方式 
 // 第一种是使用 substr 截取$chars中的任意一位字符； 
 // 第二种是取字符数组 $chars 的任意元素 
 // $password .= substr($chars, mt_rand(0, strlen($chars) – 1), 1); 
-$password .= $chars[ mt_rand(0, strlen($chars) - 1) ]; 
-} 
-return $password; 
+		$password .= $chars[ mt_rand(0, strlen($chars) - 1) ]; 
+	} 
+	return $password; 
 }
 ?>
 <!DOCTYPE html>
@@ -60,46 +60,46 @@ return $password;
 				<div class="panel panel-primary animated flipInY">
 					<div class="panel-body">
 						<?php if($step=='1'){?>
-						<form action="?step=2" class="form-horizontal" method="post" role="form">
-							<div class="cd-nugget-info">
-								<h1>YoungxjTools</h1>
-								<h1>1.本PHP代码由Youngxj开发。</h1>
-								<h1>2.程序为开源项目</h1>
-								<h1>3.YoungxjQQ：1170535111</h1>
-								<input type="submit" name="submit" value="开始安装">
-							</div>
-							<div class="cd-app-screen"></div>
-							<div class="cd-cover-layer"></div>
-						</form> </div>
-					</div>
-				</div>
-			</div>
-			<?php }elseif($step=='2'){?>
-			<center>
-				<div class="form-signin">
-					<div class="login-wrap">
-						<section class="container">
-							<div class="login">
-								<h1>数据库设置安装</h1>
-								<form action="?step=3" class="form-sign" method="post">
-									数据库地址:<input type="text" name="host" value="localhost" placeholder="数据库地址"><br><br>
-									数据库用户名:<input type="text" name="user" value="root" placeholder="数据库用户名"><br><br>
-									数据库密码:<input type="text" name="password" value=""placeholder="数据库密码"><br><br>
-									数据库库名:<input type="text" name="database" value="" placeholder="数据库库名"><br><br><br><hr/>
-									网站地址:<input type="text" name="web_url" placeholder="网站地址(http://tools.yum6.cn)"><br><br><br>
-									用户名:<input type="text" name="username" value="admin" placeholder="后台用户名"><br><br><br>
-									密码:<input type="password" name="userpw" placeholder="后台密码"><span>(不小于6位)</span><br><br><br>
-									校对密码:<input type="password" name="userpw2" placeholder="再次输入密码"><span>(不小于6位)</span><br><br><br>
+							<form action="?step=2" class="form-horizontal" method="post" role="form">
+								<div class="cd-nugget-info">
+									<h1>YoungxjTools</h1>
+									<h1>1.本PHP代码由Youngxj开发。</h1>
+									<h1>2.程序为开源项目</h1>
+									<h1>3.YoungxjQQ：1170535111</h1>
 									<input type="submit" name="submit" value="开始安装">
-								</form>
-							</div>
-						</section>
+								</div>
+								<div class="cd-app-screen"></div>
+								<div class="cd-cover-layer"></div>
+							</form> </div>
+						</div>
 					</div>
 				</div>
-			</center>
-		</form>
+			<?php }elseif($step=='2'){?>
+				<center>
+					<div class="form-signin">
+						<div class="login-wrap">
+							<section class="container">
+								<div class="login">
+									<h1>数据库设置安装</h1>
+									<form action="?step=3" class="form-sign" method="post">
+										数据库地址:<input type="text" name="host" value="localhost" placeholder="数据库地址"><br><br>
+										数据库用户名:<input type="text" name="user" value="root" placeholder="数据库用户名"><br><br>
+										数据库密码:<input type="text" name="password" value=""placeholder="数据库密码"><br><br>
+										数据库库名:<input type="text" name="database" value="" placeholder="数据库库名"><br><br><br><hr/>
+										网站地址:<input type="text" name="web_url" placeholder="网站地址(http://tools.yum6.cn)"><br><br><br>
+										用户名:<input type="text" name="username" value="admin" placeholder="后台用户名"><br><br><br>
+										密码:<input type="password" name="userpw" placeholder="后台密码"><span>(不小于6位)</span><br><br><br>
+										校对密码:<input type="password" name="userpw2" placeholder="再次输入密码"><span>(不小于6位)</span><br><br><br>
+										<input type="submit" name="submit" value="开始安装">
+									</form>
+								</div>
+							</section>
+						</div>
+					</div>
+				</center>
+			</form>
+		</div>
 	</div>
-</div>
 </div>
 </div>
 <?php }elseif($step=='3'){
@@ -136,14 +136,14 @@ return $password;
 
 				$data = "<?php
 				return array(
-					'mysql' => array(
-						'MYSQL_HOST' => '{$host}', // 数据库地址
-						'MYSQL_PORT' => '{$dk}',      // 数据库端口，一般是3306
-						'MYSQL_USER' => '{$user}',      // 数据库用户名
-						'MYSQL_PASS' => '{$password}',          // 数据库密码
-						'MYSQL_DB'   => '{$database}',      // 数据库库名称
-						'MYSQL_CHARSET' => 'utf8',   // 编码，一般utf8即可
-					),
+				'mysql' => array(
+				'MYSQL_HOST' => '{$host}', // 数据库地址
+				'MYSQL_PORT' => '{$dk}',      // 数据库端口，一般是3306
+				'MYSQL_USER' => '{$user}',      // 数据库用户名
+				'MYSQL_PASS' => '{$password}',          // 数据库密码
+				'MYSQL_DB'   => '{$database}',      // 数据库库名称
+				'MYSQL_CHARSET' => 'utf8',   // 编码，一般utf8即可
+				),
 				);
 				?>";
 				if(file_put_contents('../config.php',$data)){
@@ -153,13 +153,13 @@ return $password;
 					SET time_zone = '+00:00';
 
 					CREATE TABLE IF NOT EXISTS `tools_links` (
-						`id` int(6) unsigned NOT NULL,
-						`name` text NOT NULL,
-						`description` text NOT NULL,
-						`url` text NOT NULL,
-						`type` int(11) NOT NULL,
-						`state` int(11) NOT NULL,
-						`priority` int(11) NOT NULL
+					`id` int(6) unsigned NOT NULL,
+					`name` text NOT NULL,
+					`description` text NOT NULL,
+					`url` text NOT NULL,
+					`type` int(11) NOT NULL,
+					`state` int(11) NOT NULL,
+					`priority` int(11) NOT NULL
 					)  AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 					INSERT INTO `tools_links` (`id`, `name`, `description`, `url`, `type`, `state`, `priority`) VALUES
@@ -167,21 +167,21 @@ return $password;
 					(2, 'YoungxjTools', 'YoungxjTools', 'https://tools.yum6.cn', 1, 0, 1);
 
 					CREATE TABLE IF NOT EXISTS `tools_list` (
-						`title` varchar(30) NOT NULL,
-						`subtitle` text NOT NULL,
-						`explains` text NOT NULL,
-						`keyword` text NOT NULL,
-						`tools_url` text NOT NULL,
-						`tools_img` text NOT NULL,
-						`tools_type` text NOT NULL COMMENT '1:站长-2:开发-3:娱乐-4:其他',
-						`priority` int(30) NOT NULL DEFAULT '0',
-						`state` int(11) NOT NULL,
-						`type` int(11) NOT NULL COMMENT '内外站类型',
-						`id` int(11) NOT NULL,
-						`tools_number` int(11) NOT NULL,
-						`tools_love` int(11) NOT NULL,
-						`tools_author` text NOT NULL
-					)  AUTO_INCREMENT=37 DEFAULT CHARSET=utf8;
+					`title` varchar(30) NOT NULL,
+					`subtitle` text NOT NULL,
+					`explains` text NOT NULL,
+					`keyword` text NOT NULL,
+					`tools_url` text NOT NULL,
+					`tools_img` text NOT NULL,
+					`tools_type` text NOT NULL COMMENT '1:站长-2:开发-3:娱乐-4:其他',
+					`priority` int(30) NOT NULL DEFAULT '0',
+					`state` int(11) NOT NULL,
+					`type` int(11) NOT NULL COMMENT '内外站类型',
+					`id` int(11) NOT NULL,
+					`tools_number` int(11) NOT NULL,
+					`tools_love` int(11) NOT NULL,
+					`tools_author` text NOT NULL
+					)  AUTO_INCREMENT=50 DEFAULT CHARSET=utf8;
 
 
 					INSERT INTO `tools_list` (`title`, `subtitle`, `explains`, `keyword`, `tools_url`, `tools_img`, `tools_type`, `priority`, `state`, `type`, `id`, `tools_number`, `tools_love`, `tools_author`) VALUES
@@ -206,9 +206,9 @@ return $password;
 					('手机号码归属地查询', 'phone', '手机号码归属地查询', '手机号码归属地查询', 'phone', '{$web_url}/images/phone.png', '站长类', 0, 0, 0, 19, 0, 0,'Youngxj'),
 					('帮你百度一下', 'go to baidu', '帮你百度一下', '百度,百度一下', 'baidu', '{$web_url}/images/baidu.png', '娱乐类', 0, 0, 0, 20, 0, 0,'Youngxj'),
 					('dns检测', 'dns test', '在线dns检测', 'dns,dns检测,dns劫持', 'dnstest', '{$web_url}/images/dns.png', '站长类', 0, 0, 0, 21, 0, 0,'Youngxj'),
-					('贴吧云签到', 'baidu tb', '每日自动执行百度贴吧的签到功能', '云签到,百度贴吧', '//tb.youngxj.cn', '{$web_url}/images/baidu.png', '站长类', 0, 0, 1, 22, 0, 0,'Youngxj'),
+					('贴吧云签到', 'baidu tb', '每日自动执行百度贴吧的签到功能', '云签到,百度贴吧', '//tools.yum6.cn/Post_Bar', '{$web_url}/images/baidu.png', '站长类', 0, 0, 1, 22, 0, 0,'Youngxj'),
 					('在线制作网页', 'Online production', '在线一键制作个性网页', '在线网页制作,个人网页制作,表白网页制作,祝福网页制作,免费', '//zx.yum6.cn', '{$web_url}/images/online.gif', '娱乐类', 0, 0, 1, 23, 0, 0,'Youngxj'),
-					('听歌房', 'music', '一款开源的基于网易云音乐api的在线音乐播放器', '孟坤播放器,在线音乐播放器,MKOnlinePlayer,网', '//music.yum6.cn', '{$web_url}/images/music.png', '娱乐类', 0, 0, 1, 24, 0, 0,'Youngxj'),
+					('听歌房', 'music', '一款开源的基于网易云音乐api的在线音乐播放器', '孟坤播放器,在线音乐播放器,MKOnlinePlayer,网', '//tools.yum6.cn/mk_music/', '{$web_url}/images/music.png', '娱乐类', 0, 0, 1, 24, 0, 0,'Youngxj'),
 					('音乐搜索器', 'music seach', '麦葱特制多站合一音乐搜索解决方案，可搜索试听网易云音乐、QQ音乐、酷狗音乐、酷我音乐、虾米音乐、百度音乐、一听音乐、咪咕音乐、荔枝FM、蜻蜓FM、喜马拉雅FM、全民K歌、5sing原创翻唱音乐。', '音乐搜索,音乐搜索器,音乐试听,音乐在线听,网易云音乐,QQ', 'music', '{$web_url}/images/music.png', '娱乐类', 0, 0, 0, 25, 0, 0,'Youngxj'),
 					('中文转拼音', 'PinYin', '在线中文转拼音', '在线中文转拼音', 'Pinyin', '{$web_url}/images/zw.png', '其他', 1, 0, 0, 26, 0, 0,'Youngxj'),
 					('站长权重查询', 'rank query', '百度权重,360权重,神马权重,站长权重查询', '百度权重,360权重,神马权重,站长权重', 'rank', '{$web_url}/images/rank.png', '站长类', 1, 0, 0, 27, 0, 0,'Youngxj'),
@@ -220,41 +220,54 @@ return $password;
 					('随机密码生成器', 'Random key', '随机密码生成器', '随机密码生成器', 'rand_key', '{$web_url}/images/key.png', '其他', 1, 0, 0, 33, 0, 0,'Youngxj'),
 					('QQ空间艾特蓝链', 'qzone', 'QQ空间艾特蓝链', 'QQ空间艾特蓝链', 'qzone', '{$web_url}/images/qzone.png', '娱乐类', 1, 0, 0, 34, 0, 0,'Youngxj'),
 					('略缩图四合一', 'preview', '略缩图四合一', '略缩图四合一', 'preview', '{$web_url}/images/preview.png', '其他', 1, 0, 0, 35, 0, 0,'Youngxj'),
-					('个性二维码制作', 'pre_qrcode', '个性二维码制作', '个性二维码制作', 'pre_qrcode', '{$web_url}/images/qrcode.png', '其他', 1, 0, 0, 36, 0, 0,'Youngxj');
+					('个性二维码制作', 'pre_qrcode', '个性二维码制作', '个性二维码制作', 'pre_qrcode', '{$web_url}/images/qrcode.png', '其他', 1, 0, 0, 36, 0, 0,'Youngxj'),
+					('在线网址链接批量生成器', 'link_get', '在线网址链接批量生成器', '在线网址链接批量生成器', 'link_get', '{$web_url}/images/link.png', '站长类', 1, 0, 0, 37, 0, 0,'Youngxj'),
+					('骰子游戏', 'dice', '骰子游戏', '骰子游戏', 'dice', '{$web_url}/images/sz.png', '娱乐类', 1, 0, 0, 38, 0, 0,'Youngxj'),
+					('PV刷新工具', 'page_view', 'PV刷新工具', 'PV刷新工具', 'page_view', '{$web_url}/images/view-stats.png', '站长类', 1, 0, 0, 39, 0, 0,'Youngxj'),
+					('线条字生成', 'line_text', '线条字生成', '线条字生成', 'line_text', '{$web_url}/images/xt.png', '站长类', 1, 0, 0, 40, 0, 0,'Youngxj'),
+					('长度计量单位换算计算', 'length', '长度计量单位换算计算', '长度计量单位换算计算', 'length', '{$web_url}/images/length.png', '其他', 1, 0, 0, 41, 0, 0,'Youngxj'),
+					('重量计量计算换算', 'weight', '重量计量计算换算', '重量计量计算换算', 'weight', '{$web_url}/images/weight.png', '其他', 1, 0, 0, 42, 0, 0,'Youngxj'),
+					('正则表达式在线测试', 'js_expression', '正则表达式在线测试', '正则表达式在线测试', 'js_expression', '{$web_url}/images/js.png', '开发类', 1, 0, 0, 43, 0, 0,'Youngxj'),
+					('Fuckjs转码加密', 'Fuck_js', 'Fuckjs转码加密', 'Fuckjs转码加密', 'Fuck_js', '{$web_url}/images/js.png', '开发类', 1, 0, 0, 44, 0, 0,'Youngxj'),
+					('JSON验证整理', 'json_format', 'JSON验证整理', 'JSON验证整理', 'json_format', '{$web_url}/images/json.png', '开发类', 1, 0, 0, 45, 0, 0,'Youngxj'),
+					('在线文本对比', 'text_contrast', '在线文本对比', '在线文本对比', 'text_contrast', '{$web_url}/images/text.png', '开发类', 1, 0, 0, 46, 0, 0,'Youngxj'),
+					('文本转ASCII', 'HTML_ASCII', '文本转ASCII', '文本转ASCII', 'HTML_ASCII', '{$web_url}/images/text.png', '站长类', 1, 0, 0, 47, 0, 0,'Youngxj'),
+					('中国家庭称谓计算器', 'relationship', '中国家庭称谓计算器', '中国家庭称谓计算器', 'relationship', '{$web_url}/images/ch.png', '其他', 1, 0, 0, 48, 0, 0,'Youngxj'),
+					('在线进制转换', 'hex', '在线进制转换', '在线进制转换', 'hex', '{$web_url}/images/hex.png', '站长类', 1, 0, 0, 49, 0, 0,'Youngxj');
 					
 
 					CREATE TABLE IF NOT EXISTS `tools_log` (
-						`user` text NOT NULL,
-						`content` text NOT NULL,
-						`time` text NOT NULL,
-						`state` int(11) NOT NULL,
-						`id` int(11) NOT NULL
+					`user` text NOT NULL,
+					`content` text NOT NULL,
+					`time` text NOT NULL,
+					`state` int(11) NOT NULL,
+					`id` int(11) NOT NULL
 					)  DEFAULT CHARSET=utf8;
 
 
 					CREATE TABLE IF NOT EXISTS `tools_settings` (
-						`id` int(6) unsigned NOT NULL,
-						`url` varchar(99) NOT NULL,
-						`title` text NOT NULL,
-						`keyword` text NOT NULL,
-						`description` text NOT NULL,
-						`copyright` text NOT NULL,
-						`icp` text NOT NULL,
-						`footer` text NOT NULL,
-						`notice` text NOT NULL,
-						`ip_admin` text NOT NULL,
-						`ip_vip` text NOT NULL,
-						`rand` varchar(30) NOT NULL,
-						`referer` int(30) NOT NULL,
-						`ua` int(30) NOT NULL,
-						`name` text NOT NULL,
-						`qq` text NOT NULL,
-						`emails` text NOT NULL,
-						`search` int(30) NOT NULL,
-						`tools_priority` text NOT NULL,
-						`tz` int(30) NOT NULL,
-						`tz_msg` text NOT NULL,
-						`templates` INT NOT NULL
+					`id` int(6) unsigned NOT NULL,
+					`url` varchar(99) NOT NULL,
+					`title` text NOT NULL,
+					`keyword` text NOT NULL,
+					`description` text NOT NULL,
+					`copyright` text NOT NULL,
+					`icp` text NOT NULL,
+					`footer` text NOT NULL,
+					`notice` text NOT NULL,
+					`ip_admin` text NOT NULL,
+					`ip_vip` text NOT NULL,
+					`rand` varchar(30) NOT NULL,
+					`referer` int(30) NOT NULL,
+					`ua` int(30) NOT NULL,
+					`name` text NOT NULL,
+					`qq` text NOT NULL,
+					`emails` text NOT NULL,
+					`search` int(30) NOT NULL,
+					`tools_priority` text NOT NULL,
+					`tz` int(30) NOT NULL,
+					`tz_msg` text NOT NULL,
+					`templates` INT NOT NULL
 					)  AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 
@@ -262,37 +275,37 @@ return $password;
 					(1, '{$web_url}', '杨小杰工具箱', '二维码生成,dns解析查询,短网址生成,icp备案查询,ip定位,全民k歌解析,在线ping,端口扫描,子域名扫描,QQ在线状态,在线运行,时间戳转换,ua查询,whois查询,字符加解密', 'YoungxjTools提供二维码生成,dns解析查询,短网址生成,icp备案查询,ip定位,全民k歌解析,在线ping,端口扫描,子域名扫描,QQ在线状态,在线运行,时间戳转换,ua查询,whois查询,字符加解密等优质的小工具,更加方便的使用我们的小工具,便捷站长使用工具', 'Youngxj', '', '', '', '', '127.0.0.255', 'Youngxj', 1, 1, 'YoungxjTools', '1170535111', 'blog@youngxj.cn','2','1','2','<h2>浏览器打开</h2>','0');
 
 					CREATE TABLE IF NOT EXISTS `tools_smtp` (
-						`id` int(6) unsigned NOT NULL,
-						`host` tinytext NOT NULL,
-						`port` tinytext NOT NULL,
-						`fromname` tinytext NOT NULL,
-						`username` tinytext NOT NULL,
-						`password` tinytext NOT NULL,
-						`smtp_from` tinytext NOT NULL,
-						`sub` tinytext NOT NULL,
-						`add_email` tinytext NOT NULL
+					`id` int(6) unsigned NOT NULL,
+					`host` tinytext NOT NULL,
+					`port` tinytext NOT NULL,
+					`fromname` tinytext NOT NULL,
+					`username` tinytext NOT NULL,
+					`password` tinytext NOT NULL,
+					`smtp_from` tinytext NOT NULL,
+					`sub` tinytext NOT NULL,
+					`add_email` tinytext NOT NULL
 					)  AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 					INSERT INTO `tools_smtp` (`id`, `host`, `port`, `fromname`, `username`, `password`, `smtp_from`, `sub`,`add_email`) VALUES
 					(1, '', '', '', '', '', '', '收到一条来自xxxxx的回复','');
 
 					CREATE TABLE IF NOT EXISTS `tools_talk` (
-						`name` text NOT NULL,
-						`content` text NOT NULL,
-						`times` text NOT NULL,
-						`state` int(30) NOT NULL,
-						`emails` text NOT NULL,
-						`ip` text NOT NULL,
-						`id` int(11) NOT NULL
+					`name` text NOT NULL,
+					`content` text NOT NULL,
+					`times` text NOT NULL,
+					`state` int(30) NOT NULL,
+					`emails` text NOT NULL,
+					`ip` text NOT NULL,
+					`id` int(11) NOT NULL
 					)  DEFAULT CHARSET=utf8;
 
 					CREATE TABLE IF NOT EXISTS `tools_user` (
-						`id` int(6) unsigned NOT NULL,
-						`user` text NOT NULL,
-						`password` text NOT NULL,
-						`type` int(30) NOT NULL,
-						`token` text NOT NULL,
-						`user_token` text NOT NULL
+					`id` int(6) unsigned NOT NULL,
+					`user` text NOT NULL,
+					`password` text NOT NULL,
+					`type` int(30) NOT NULL,
+					`token` text NOT NULL,
+					`user_token` text NOT NULL
 					)  AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 					INSERT INTO `tools_user` (`id`, `user`, `password`, `type`,`token`,`user_token`) VALUES
@@ -323,7 +336,7 @@ return $password;
 					MODIFY `id` int(6) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 
 					ALTER TABLE `tools_list`
-					MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=37;
+					MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=50;
 
 					ALTER TABLE `tools_log`
 					MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
@@ -355,7 +368,7 @@ return $password;
 						echo'<script language=\'javascript\'>alert("导入数据表时错误，'.$mysqli->connect_error.'");history.go(-1);</script>';
 					}else{
 						@file_put_contents('install.lock','');
-						curl_get_https('https://api.yum6.cn/service/inc_url.php?url='.getWebUrl());
+						curl_get_https('https://api.yum6.cn/service/inc_url.php?url='.$_SERVER['HTTP_HOST']);
 						?>
 						<div class="login-wrap">
 							<div class="panel-body">

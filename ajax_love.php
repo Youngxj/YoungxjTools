@@ -9,7 +9,7 @@ if ($_COOKIE["love_id_".$id]) {
   $arr = array('state'=>2,'msg'=>'已经点过赞了');
   echoJson(json_encode($arr));
 }
-$loves = $tools_list->incr(array('id'=>deepEscape($id)),'tools_love');
+$loves = $tools_list->incr(array('id'=>$id),'tools_love');
 
 if($loves){
 	setcookie('love_id_'.$id,$id,time()+315360000);

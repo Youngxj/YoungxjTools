@@ -12,9 +12,9 @@ $time_log = new Model("tools_log");
       "state" => getParam('state'),
     );
     $log_ups = $time_log->update(array('id'=>$id),$config);
-    if($log_ups){echo '<script type="text/javascript">alert("修改成功");window.location.href="log_list.php";</script>'; 
+    if($log_ups){echo "<script type='text/javascript'>layui.use('layer', function(){alert('修改成功');});window.location.href='log_list.php';</script>"; 
                   }else{
-      echo "<script>alert('失败');</script>";
+      echo "<script>layui.use('layer', function(){alert('修改失败');});</script>";
     }
   }
 ?>

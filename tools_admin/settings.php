@@ -50,6 +50,21 @@ if(getParam('domain')=='smtp'){
     echo "<script>alert('失败');</script>";
   }
 }
+if(getParam('domain')=='logo'&&$_FILES["file"]){
+  // 允许上传的图片后缀
+  $allowedExts = array("gif", "jpeg", "jpg", "png");
+  $temp = explode(".", $_FILES["file"]["name"]);
+  $extension = end($temp);
+  if ((($_FILES["file"]["type"] == "image/gif") || ($_FILES["file"]["type"] == "image/jpeg") || ($_FILES["file"]["type"] == "image/jpg") || ($_FILES["file"]["type"] == "image/pjpeg") || ($_FILES["file"]["type"] == "image/x-png") || ($_FILES["file"]["type"] == "image/png")) && in_array($extension, $allowedExts)){
+    $file = $_FILES["file"]["tmp_name"];
+    $uploaddir = "../images/";$uploaddir.="logo.png";
+    if(move_uploaded_file($file, $uploaddir)) {
+      echo '<script type="text/javascript">alert("修改成功");window.location.href="settings.php";</script>'; 
+    }else{
+      echo "<script>alert('失败');</script>";
+    }
+  }
+}
 ?>
 <div id="content">
   <div id="content-header">
@@ -58,6 +73,49 @@ if(getParam('domain')=='smtp'){
   <div id="breadcrumb">
     <a href="index.php" title="" class="tip-bottom" data-original-title="Go to Home"><i class="fa fa-home"></i> Home</a>
     <a href="#" class="current">基本信息配置</a>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="widget-box">
+        <div class="widget-title">
+          <span class="icon">
+            <i class="fa fa-envelope-open-o"></i>                 
+          </span>
+          <h5>logo设置</h5>
+        </div>
+        <div class="widget-content nopadding">
+          <form action="settings.php?domain=logo" method="post"enctype="multipart/form-data" class="form-horizontal" name="logo">
+            <div class="form-group">
+              <label for="" class="col-sm-3 col-md-3 col-lg-2 control-label">当前logo</label>
+              <div class="col-sm-9 col-md-9 col-lg-10">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="input-group input-group-sm">
+                      <img src="../images/logo.png" width="100%">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="" class="col-sm-3 col-md-3 col-lg-2 control-label">logo上传(建议使用长方形图片)</label>
+              <div class="col-sm-9 col-md-9 col-lg-10">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="input-group input-group-sm">
+                      <input type="file" name="file" id="file" accept="image/*"/>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-actions">
+              <input type="submit" value="修改" class="btn btn-primary" id="open-dialog">
+            </div>
+          </form>
+        </div>
+      </div>            
+    </div>
   </div>
   <div class="row">
     <div class="col-xs-12">
@@ -427,4 +485,6 @@ if(getParam('domain')=='smtp'){
       </div>						
     </div>
   </div>
+  
+
   <?php include 'footer.php';?>

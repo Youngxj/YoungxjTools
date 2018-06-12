@@ -15,9 +15,9 @@ $links_up = new Model("tools_links");
       "type" => getParam('type'),
     );
     $links_ups = $links_up->update(array('id'=>$id),$config);
-    if($links_ups){echo '<script type="text/javascript">alert("修改成功");window.location.href="links_list.php";</script>'; 
+    if($links_ups){echo "<script type='text/javascript'>layui.use('layer', function(){alert('修改成功');});window.location.href='links_list.php';</script>"; 
                   }else{
-      echo "<script>alert('失败');</script>";
+      echo "<script>layui.use('layer', function(){alert('失败');});</script>";
     }
   }
 ?>

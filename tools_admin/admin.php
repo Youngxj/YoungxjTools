@@ -4,15 +4,15 @@ $tools_user = new Model("tools_user");
 $user_token = $tools_user->find(array(),"","*");
 if(getParam('domain')=='update'){
   if (!getParam('user')||!getParam('password')) {
-    exit("<script language='javascript'>alert('账号密码均不能为空');window.location.href='admin.php';</script>");
+    exit("<script language='javascript'>layui.use('layer', function(){alert('账号密码均不能为空');});window.location.href='admin.php';</script>");
   }
-	$user = deepEscape(getParam('user'));
+	$user = getParam('user');
   $password = md5(md5(getParam('password')).md5($user_token['user_token']));
   $user_up = $tools_user->update(array('id'=>'1'),array('user'=>$user,'password'=>$password));
   if($user_up){
-    exit("<script language='javascript'>alert('修改成功');window.location.href='admin.php';</script>");
+    exit("<script language='javascript'>layui.use('layer', function(){alert('修改成功');});window.location.href='admin.php';</script>");
   }else{
-    exit("<script language='javascript'>alert('修改失败[可能内容未修改]');window.location.href='admin.php';</script>");
+    exit("<script language='javascript'>layui.use('layer', function(){alert('修改失败[可能内容未更改]');});window.location.href='admin.php';</script>");
   }
 }
 

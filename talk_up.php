@@ -37,9 +37,9 @@ function ok(){
 
 if (getParam('name')&&getParam('email')&&getParam('content')&&getParam('check')&&getParam('Forge')==md5(md5((int)(time()/1200)).'YoungxjTools')) 
 {
-  $name = deepEscape(getParam('name'));
-  $email = deepEscape(getParam('email'));
-  $content = deepEscape(getParam('content'));
+  $name = htmlClean(getParam('name'));
+  $email = htmlClean(getParam('email'));
+  $content = htmlClean(getParam('content'));
   $date = date("Y-m-d H:i:s");
   $ip = real_ip();
   include 'Model.php';
