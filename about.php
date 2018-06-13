@@ -92,7 +92,7 @@ $talks=$sp->findall(array('state'=>'1'),"id desc","*","{$fys},{$pagenum}");
   </div>
   <div class="panel panel-success">
     <div class="panel-heading">
-      <h3 class="panel-title"><?php echo $_COOKIE['user_name'].'你好，请';?>发布留言<small class="text-capitalize">(请勿刷留言，违者必封，手动审核之后显示在列表)</small></h3>
+      <h3 class="panel-title"><?php echo utf8_urldecode($_COOKIE['user_name']).'你好，请';?>发布留言<small class="text-capitalize">(请勿刷留言，违者必封，手动审核之后显示在列表)</small></h3>
     </div>
     <div class="panel-body">
       <div class="form-group">
@@ -101,7 +101,7 @@ $talks=$sp->findall(array('state'=>'1'),"id desc","*","{$fys},{$pagenum}");
       </div>
       <div class="form-group">
         <label for="exampleInputEmail1">昵称：</label><span style="color:red;">*</span>
-        <input type="text" class="form-control" id="name" placeholder="昵称" name="name" required="required" value="<?php echo $_COOKIE['user_name'];?>">
+        <input type="text" class="form-control" id="name" placeholder="昵称" name="name" required="required" value="<?php echo utf8_urldecode($_COOKIE['user_name']);?>">
       </div>
       <div class="form-group">
         <label for="exampleInputEmail1">邮箱地址：</label><span style="color:red;">*</span>
