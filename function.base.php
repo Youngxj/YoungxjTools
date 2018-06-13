@@ -196,3 +196,12 @@ function curl_request($url,$post='',$cookie='', $returnCookie=0,$ua='Mozilla/5.0
   }
 }
 ?>
+
+<?php
+//Unescape解码
+function utf8_urldecode($str) 
+{
+  $str = preg_replace("/%u([0-9a-f]{3,4})/i","&#x\\1;",urldecode($str));
+  return html_entity_decode($str,null,'UTF-8');;
+}
+?>
