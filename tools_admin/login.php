@@ -26,10 +26,10 @@ if (getParam('user')&&getParam('password')) {
     if($inc_token){
       exit("<script language='javascript'>window.location.href='index.php';</script>");
     }else{
-      exit("<script language='javascript'>layui.use('layer', function(){alert('未知错误，请重新登录');});window.location.href='login.php';</script>");
+      exit("<script language='javascript'>alert('未知错误，请重新登录');window.location.href='login.php';</script>");
     }
   }else{
-    exit("<script language='javascript'>layui.use('layer', function(){alert('用户名或密码不正确');});window.location.href='login.php';</script>");
+    exit("<script language='javascript'>alert('用户名或密码不正确');window.location.href='login.php';</script>");
   }
 }
 ?>
