@@ -206,7 +206,7 @@ function generate_password( $length = 8 ) {
 					('手机号码归属地查询', 'phone', '手机号码归属地查询', '手机号码归属地查询', 'phone', '{$web_url}/images/phone.png', '站长类', 0, 0, 0, 19, 0, 0,'Youngxj'),
 					('帮你百度一下', 'go to baidu', '帮你百度一下', '百度,百度一下', 'baidu', '{$web_url}/images/baidu.png', '娱乐类', 0, 0, 0, 20, 0, 0,'Youngxj'),
 					('dns检测', 'dns test', '在线dns检测', 'dns,dns检测,dns劫持', 'dnstest', '{$web_url}/images/dns.png', '站长类', 0, 0, 0, 21, 0, 0,'Youngxj'),
-					('贴吧云签到', 'baidu tb', '每日自动执行百度贴吧的签到功能', '云签到,百度贴吧', '//tools.yum6.cn/Post_Bar', '{$web_url}/images/baidu.png', '站长类', 0, 0, 1, 22, 0, 0,'Youngxj'),
+					('贴吧云签到', 'baidu tb', '每日自动执行百度贴吧的签到功能', '云签到,百度贴吧', '//tools.yum6.cn/Post_Bars', '{$web_url}/images/baidu.png', '站长类', 0, 0, 1, 22, 0, 0,'Youngxj'),
 					('在线制作网页', 'Online production', '在线一键制作个性网页', '在线网页制作,个人网页制作,表白网页制作,祝福网页制作,免费', '//zx.yum6.cn', '{$web_url}/images/online.gif', '娱乐类', 0, 0, 1, 23, 0, 0,'Youngxj'),
 					('听歌房', 'music', '一款开源的基于网易云音乐api的在线音乐播放器', '孟坤播放器,在线音乐播放器,MKOnlinePlayer,网', '//tools.yum6.cn/mk_music/', '{$web_url}/images/music.png', '娱乐类', 0, 0, 1, 24, 0, 0,'Youngxj'),
 					('音乐搜索器', 'music seach', '麦葱特制多站合一音乐搜索解决方案，可搜索试听网易云音乐、QQ音乐、酷狗音乐、酷我音乐、虾米音乐、百度音乐、一听音乐、咪咕音乐、荔枝FM、蜻蜓FM、喜马拉雅FM、全民K歌、5sing原创翻唱音乐。', '音乐搜索,音乐搜索器,音乐试听,音乐在线听,网易云音乐,QQ', 'music', '{$web_url}/images/music.png', '娱乐类', 0, 0, 0, 25, 0, 0,'Youngxj'),
