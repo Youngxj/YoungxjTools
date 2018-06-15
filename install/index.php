@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 error_reporting(E_ALL & ~E_NOTICE);
 if(file_exists('install.lock')){
 	exit('如果你看到这段话，说明你已经安装过了。<br>请删除install目录下的install.lock文件即可正常安装。');

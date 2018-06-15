@@ -1,6 +1,6 @@
 <?php 
 $root_url = $_SERVER['REQUEST_URI'];
-if ($root_url != '/') {mores($as['tools_url'],$navs,Tools_url);}
+if ($root_url != '/') {mores($as['tools_url'],$navs,Tools_url.'/'.Tools_t);}
 ?>
 <!--footer start-->
 <footer class="footer text-center">

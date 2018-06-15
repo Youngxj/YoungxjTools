@@ -1,9 +1,9 @@
 <!--
 * @act      Tools
-* @version  1.2
+* @version  1.2.1
 * @author   youngxj
-* @date     2018-06-13
-* @url      http://www.youngxj.cn
+* @date     2018-06-15
+* @url      https://www.youngxj.cn
 * 切勿商用,切勿改版权,后果自付
 -->
 <?php
@@ -68,6 +68,9 @@ define('Emails', $tools_settings['emails']);
 
 /*全局工具地址*/
 define('Tools_url',$tools_settings['url']);
+
+/*工具目录*/
+define('Tools_t', 'Tools');
 
 /*
  *  全局工具排行

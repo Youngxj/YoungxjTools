@@ -1,7 +1,7 @@
 <?php
 error_reporting(0);
 
-define(VERSION, '1.2');
+define(VERSION, '1.2.1');
 
 function real_ip(){
   //获取用户真实IP
