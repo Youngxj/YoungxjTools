@@ -314,6 +314,8 @@ class Autoupdate {
 	 */
 	public function replaceupdate(){
 		if(is_dir($this->installDir)){
+			@unlink($this->installDir.'YoungxjTools-master/favicon.ico');
+			@unlink($this->installDir.'YoungxjTools-master/images/logo.png');
 		}else{
 			$this->log('文件效验失败！');
 			return false;
