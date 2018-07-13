@@ -81,7 +81,7 @@ $(function() {
 });
 
 function ajax_love(id){
-	$.getJSON("ajax_love.php?id="+id,function(result){ 
+	$.getJSON("../function/ajax_love.php?id="+id,function(result){ 
 		if (result.state=="1") {
 			$('#tools_love_'+id).css("color", "red");
 			layer.msg(result.msg);
@@ -118,7 +118,7 @@ function setCookie(c_name,value,expiredays)
 }
 
 //切换主题
-function temp(){if(getCookie('temp')=='1'){setCookie("temp","2","365");layer.msg('跳转中', {icon: 16,shade: 0.01});window.setTimeout(location.reload(),5000); }else{setCookie("temp","1","365");layer.msg('跳转中', {icon: 16,shade: 0.01});window.setTimeout(location.reload(),5000); }}
+function temp(){if(getCookie('temp')=='1'){setCookie("temp","2","365");layer.msg('跳转中',{icon:16,shade:0.01});window.setTimeout(location.reload(),5000)}else if(getCookie('temp')=='2'){setCookie("temp","3","365");layer.msg('跳转中',{icon:16,shade:0.01});window.setTimeout(location.reload(),5000)}else{setCookie("temp","1","365");layer.msg('跳转中',{icon:16,shade:0.01});window.setTimeout(location.reload(),5000)}}
 //切换排序
 function priority(){
 	if(getCookie('sort_priority')=='priority desc'){

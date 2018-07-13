@@ -1,23 +1,4 @@
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed,
-figure, figcaption, footer, header, hgroup,
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  font-size: 100%;
-  font: inherit;
-  vertical-align: baseline;
-}
+
 .cd-nugget-info {
   position: absolute;
   width: 60%;
@@ -39,6 +20,11 @@ time, mark, audio, video {
   color: #fefffb;
   font-size: 1.6rem;
   margin: 1.6em 0;
+}
+.cd-nugget-info h3 {
+  color: #fefffb;
+  font-size: 1.0rem;
+  margin: 1.0em 0;
 }
 .cd-nugget-info .cd-btn {
   -webkit-appearance: none;
@@ -168,7 +154,7 @@ q:before, q:after {
 }
 
 table {
-  border-collapse: collapse;
+  /*border-collapse: collapse;*/
   border-spacing: 0;
 }
 /*
@@ -178,7 +164,7 @@ table {
  * Licensed under the MIT License:
  * http://www.opensource.org/licenses/mit-license.php
  */
-body {
+ body {
   font: 13px/20px 'Lucida Grande', Tahoma, Verdana, sans-serif;
   color: #404040;
   background: #0ca3d2;
@@ -234,7 +220,7 @@ body {
 .login p:first-child {
   margin-top: 0;
 }
-.login input[type=text], .login input[type=password] {
+.login input[type=text], .login input[type=password],.login input[type=url] {
   width: 278px;
 }
 .login p.remember_me {
@@ -287,7 +273,7 @@ input {
   font-size: 14px;
 }
 
-input[type=text], input[type=password] {
+input[type=text], input[type=password],input[type=url] {
   margin: 5px;
   padding: 0 10px;
   width: 200px;

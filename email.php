@@ -3,8 +3,8 @@
 require_once  ("Model.php");
 $emails = new Model("tools_smtp");
 $emails_val = $emails->find(array("id"=>1),"","*");
-require 'class.smtp.php';
-require 'class.phpmailer.php';
+require 'function/class.smtp.php';
+require 'function/class.phpmailer.php';
 date_default_timezone_set('PRC');//设置邮件发送的时间，如果不设置，则会显示其他区的时间
 
 $mail = new PHPMailer(); 

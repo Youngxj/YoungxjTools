@@ -1,7 +1,5 @@
 <?php
-error_reporting(0);
 
-define(VERSION, '1.2.1');
 
 function real_ip(){
   //获取用户真实IP
@@ -27,21 +25,6 @@ function real_ip(){
 //随机小数
 function randomFloat($min = 0, $max = 1) {
   return '0.'.rand($min,$max);
-}
-?>
-<?php
-//js访问权限加密
-function encryption($echo = '0',$string = 'YoungxjTools'){
-  if($echo){return $string;}
-  if($_GET['rand']!= md5(md5((int)(time()/10)).$string)){
-    exit();
-  }
-  if(!isset($_SERVER['HTTP_USER_AGENT']) || $_SERVER['HTTP_USER_AGENT']==''){//判断ua为空
-    exit();
-  }
-  if(!isset($_SERVER['HTTP_REFERER']) || $_SERVER['HTTP_REFERER']==''){//判断来路为空
-    exit();
-  }
 }
 ?>
 
@@ -203,5 +186,107 @@ function utf8_urldecode($str)
 {
   $str = preg_replace("/%u([0-9a-f]{3,4})/i","&#x\\1;",urldecode($str));
   return html_entity_decode($str,null,'UTF-8');;
+}
+?>
+<?php
+$_GET     && SafeFilter($_GET);
+$_POST    && SafeFilter($_POST);
+$_COOKIE  && SafeFilter($_COOKIE);
+//php防注入和XSS攻击通用过滤. 
+//by qq:831937
+function SafeFilter (&$arr) 
+{
+
+ $ra=Array('/([\x00-\x08,\x0b-\x0c,\x0e-\x19])/','/script/','/javascript/','/vbscript/','/expression/','/applet/','/meta/','/xml/','/blink/','/link/','/style/','/embed/','/object/','/frame/','/layer/','/title/','/bgsound/','/base/','/onload/','/onunload/','/onchange/','/onsubmit/','/onreset/','/onselect/','/onblur/','/onfocus/','/onabort/','/onkeydown/','/onkeypress/','/onkeyup/','/onclick/','/ondblclick/','/onmousedown/','/onmousemove/','/onmouseout/','/onmouseover/','/onmouseup/','/onunload/');
+
+ if (is_array($arr))
+ {
+   foreach ($arr as $key => $value) 
+   {
+    if (!is_array($value))
+    {
+           //不对magic_quotes_gpc转义过的字符使用addslashes(),避免双重转义。
+      if (!get_magic_quotes_gpc())            
+      {
+            //给单引号（'）、双引号（"）、反斜线（\）与 NUL（NULL 字符）加上反斜线转义
+       $value  = addslashes($value);           
+     }
+           //删除非打印字符，粗暴式过滤xss可疑字符串
+     $value       = preg_replace($ra,'',$value);  
+          //去除 HTML 和 PHP 标记并转换为 HTML 实体   
+     $arr[$key]     = htmlentities(strip_tags($value)); 
+   }
+   else
+   {
+    SafeFilter($arr[$key]);
+  }
+}
+}
+}
+?>
+<?php 
+/**
+ * 判断是否为邮箱
+ * @param  string  $email 邮箱地址
+ * @return boolean        返回真假
+ */
+function isEmail($email){
+  $mode = '/\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/';
+  if(preg_match($mode,$email)){
+    return true;
+  }
+  else{
+    return false;
+  }
+}
+?>
+<?php
+/**
+ * 获取网络附件
+ * @param  string  $url      网络地址
+ * @param  string  $save_dir 保存目录
+ * @param  string  $filename 保存名称
+ * @param  integer $type     下载类型1为curl下载
+ * @return array             返回数组保存目录及名称
+ */
+function getFile($url, $save_dir = '', $filename = '', $type = 0) {
+    if (trim($url) == '') {
+        return false;
+    }
+    if (trim($save_dir) == '') {
+        $save_dir = './';
+    }
+    if (0 !== strrpos($save_dir, '/')) {
+        $save_dir.= '/';
+    }
+    //创建保存目录
+    if (!file_exists($save_dir) && !mkdir($save_dir, 0777, true)) {
+        return false;
+    }
+    //获取远程文件所采用的方法
+    if ($type) {
+        $ch = curl_init();
+        $timeout = 5;
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
+        $content = curl_exec($ch);
+        curl_close($ch);
+    } else {
+        ob_start();
+        readfile($url);
+        $content = ob_get_contents();
+        ob_end_clean();
+    }
+    $size = strlen($content);
+    //文件大小
+    $fp2 = @fopen($save_dir . $filename, 'a');
+    fwrite($fp2, $content);
+    fclose($fp2);
+    unset($content, $url);
+    return array(
+        'file_name' => $filename,
+        'save_path' => $save_dir . $filename
+    );
 }
 ?>

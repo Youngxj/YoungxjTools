@@ -3,7 +3,7 @@ $title = '关于YoungxjTools';
 $keywords = 'Youngxj,YoungxjTools';
 include 'header.php';
 // smtp发信模块
-include 'page.class.php';
+include 'function/page.class.php';
 // 下面是输出留言板内容
 // 及分页代码
 $sp->table_name = "tools_talk";
@@ -13,7 +13,7 @@ $pagenum = '5';
 //总数除以分页数
 $numss = ceil(count($num) / $pagenum);
 //当前分页数
-$page = isset($_GET['page'])?$_GET['page']:'1';
+$page = getParam('page')?getParam('page'):'1';
 // 为什么要减一？
 // 问的好，因为当页数为1的时候
 // $fys的值就是1*5=5，所以sql里就会从5,5起步
@@ -121,5 +121,5 @@ $talks=$sp->findall(array('state'=>'1'),"id desc","*","{$fys},{$pagenum}");
   </div>
 </div>
 
-<script type="text/javascript" src="js/about.php"></script>
+<script type="text/javascript" src="js/about.js"></script>
 <?php include 'footer.php';?>

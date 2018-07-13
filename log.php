@@ -5,14 +5,14 @@ $sp->table_name = "tools_log";
 $time_logs=$sp->findall(array('state'=>'0'),"id desc","*");
 
 // 分页模块
-include 'page.class.php';
+include 'function/page.class.php';
 
 //每页输出数量
 $pagenum = '6';
 //总数除以分页数
 $numss = ceil(count($time_logs) / $pagenum);
 //当前分页数
-$page = isset($_GET['page'])?$_GET['page']:'1';
+$page = is_numeric(getParam('page'))?getParam('page'):'1';
 
 $fy = $page-1;
 $fys = $fy*$pagenum;

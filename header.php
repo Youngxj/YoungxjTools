@@ -1,28 +1,33 @@
 <!--
 * @act      Tools
-* @version  1.2.1
+* @version  1.3.0
 * @author   youngxj
-* @date     2018-06-15
+* @date     2018-06-30
 * @url      https://www.youngxj.cn
 * 切勿商用,切勿改版权,后果自付
 -->
 <?php
+header("Content-type:text/html;charset=utf-8");
+//判断是否已安装
 define('APP_PATH',realpath(dirname(__FILE__)));
 define('DS',DIRECTORY_SEPARATOR);
 if(!is_file(APP_PATH.DS.'install/install.lock')){
-  exit('你还没有安装！<a href="install">点击安装<a>');
+  @header("location:install/index.php");
 }
 
-/*全局错误隐藏*/
-define("DEBUG",true);
-if(constant("DEBUG")){error_reporting(0);}
-
-
 /*支持库*/
-include "function.base.php";
+include_once "function.base.php";
 
 /*数据库类库*/
 include_once 'Model.php';
+
+/*获取配置项*/
+$CONF = require('function.config.php');
+
+
+/*全局错误隐藏*/
+if($CONF['config']['DEBUG']){error_reporting(0);}
+
 
 //获取后台配置项
 $sp = new Model("tools_settings");
@@ -38,7 +43,7 @@ if($tools_settings['ua']){
   /*ua+cc开启*/
   session_start();
   define('CC_Defender', 1);
-  include 'security.php';
+  include 'function/security.php';
   if(!isset($_SERVER['HTTP_USER_AGENT']) || $_SERVER['HTTP_USER_AGENT']==''){
     exit('<!DOCTYPE html><html><head><title>正在跳转，请稍等</title></head><body><p>您当前浏览器不支持或操作系统语言设置非中文,无法访问本站！</p></body></html>');
   }
@@ -69,8 +74,6 @@ define('Emails', $tools_settings['emails']);
 /*全局工具地址*/
 define('Tools_url',$tools_settings['url']);
 
-/*工具目录*/
-define('Tools_t', 'Tools');
 
 /*
  *  全局工具排行
@@ -104,8 +107,25 @@ define('Desc', $priority);
  *  2 流行样式
  */
 
-$temp = $_COOKIE['temp'];
-if(!isset($_COOKIE['temp'])){if ($tools_settings['templates']=='1') {setcookie('temp','1');$temp = '1';}if ($tools_settings['templates']=='2') {setcookie('temp','2');$temp = '2';}}
+if ($tools_settings['templates']==0) {
+  switch ($_COOKIE['temp']) {
+    case '1':
+    $temp = '1';
+    break;
+    case '2':
+    $temp = '2';
+    break;
+    case '3':
+    $temp = '3';
+    break;
+    default:
+    setcookie('temp','1');$temp = '1';
+    break;
+  }
+}else{
+  $temp = $tools_settings['templates'];
+}
+
 define('templates', $temp);
 
 
@@ -129,7 +149,7 @@ $tools_navsort=$sp->query('select distinct tools_type from tools_list ORDER BY `
 if($id){
   $sp->table_name = "tools_list";
   /*查询工具id相关数据*/
-  $as=$sp->find(array("id = '$id'"),"id desc","*");
+  $as=$sp->find(array("tools_url = '$id'"),"id desc","*");
   $tools_type = $as['tools_type'];
   $navs = $sp->findall(array("tools_type = '$tools_type'"),"id desc","*");
   $title = $as['title'];
@@ -137,8 +157,7 @@ if($id){
   $subtitle = $as['subtitle'];
   $explains = $as['explains'];
   /*记录访问次数*/
-  $numbers = $sp->incr(array('id'=>$id),'tools_number');
-  
+  $numbers = $sp->incr(array('tools_url'=>$id),'tools_number');
 }else{
   $title = $tools_settings['title'];
   $keywords = $tools_settings['keyword'];
@@ -168,7 +187,7 @@ if($id){
   
   <style type="text/css">
   /*正文样式*/
-  body{font-family: "HanHei SC","PingHei","PingFang SC","微软雅黑","Helvetica Neue","Helvetica","Arial",sans-serif;font-size: 13px;line-height: 1.846;color: #666666;background-color: #ffffff;}
+  body{font-family: "HanHei SC","PingHei","PingFang SC","微软雅黑","Helvetica Neue","Helvetica","Arial",sans-serif;font-size: 13px;line-height: 1.846;color: #666666;background-image: url(/images/background.png)}
   /*主体头部空*/
   .clearfix{margin-top:40px;}
   /*返回内容设为隐藏*/
@@ -221,16 +240,7 @@ href="http://browsehappy.com">立即升级</a>
       <a href="<?php echo Tools_url;?>"><img src="<?php echo Tools_url;?>/images/logo.png" alt="YoungxjTools" class="logo" width="135px"></a>
     </div><!-- /.navbar-header -->
     <div id="navbar" class="collapse navbar-collapse">
-      <ul class="nav navbar-nav navbar-right"> 
-        <!-- 老版本导航<?php if(constant("templates")=='1'){?>
-        <li class="<?php if(!isset($_GET['sort'])){echo 'active';}?>">
-          <a href="<?php echo Tools_url;?>"><?php echo $tools_settings['name'];?></a>
-        </li>
-        <?php foreach($tools_navsort as $age){?>分类导航目录优先
-        <li <?php if($_GET['sort']==$age['tools_type']){echo 'class="active"';}?>>
-          <a href="<?php echo Tools_url;?>/?sort=<?php echo $age['tools_type'];?>"><?php echo $age['tools_type'];?></a>
-        </li>
-        <?php }}?> -->
+      <ul class="nav navbar-nav navbar-right">
         <?php foreach($tools_links as $age){?><!--自定义导航目录-->
         <li><a href="<?php echo $age['url'];?>" target="_blank"><?php echo $age['name'];?></a></li>
       <?php }?>

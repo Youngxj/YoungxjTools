@@ -1,10 +1,14 @@
 <?php
-error_reporting(0);
+/*获取配置项*/
+$CONF = require('function.config.php');
+
+/*全局错误隐藏*/
+if($CONF['config']['DEBUG']){error_reporting(0);}
 include 'function.base.php';
 /*ua+cc开启*/
 session_start();
 define('CC_Defender', 1);
-include 'security.php';
+include 'function/security.php';
 if(!isset($_SERVER['HTTP_USER_AGENT']) || $_SERVER['HTTP_USER_AGENT']==''){
   exit('<!DOCTYPE html><html><head><title>正在跳转，请稍等</title></head><body><p>您当前浏览器不支持或操作系统语言设置非中文,无法访问本站！</p></body></html>');
 }
@@ -34,8 +38,11 @@ function ok(){
   $arr = array ('state'=>'ok','msg'=>'提交成功');
   echoJson(json_encode($arr));
 }
-
-if (getParam('name')&&getParam('email')&&getParam('content')&&getParam('check')&&getParam('Forge')==md5(md5((int)(time()/1200)).'YoungxjTools')) 
+if(!isEmail(getParam('email'))){
+  $arr = array ('state'=>'error','msg'=>'邮箱地址不正确');
+  echoJson(json_encode($arr));
+}
+if (getParam('name')&&getParam('email')&&getParam('content')&&getParam('check')) 
 {
   $name = htmlClean(getParam('name'));
   $email = htmlClean(getParam('email'));

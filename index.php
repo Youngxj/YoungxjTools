@@ -1,23 +1,19 @@
 <?php
 include 'header.php';
-
-/*拼音库用于首页分类卡片
- *作用不大，可用可不用
- *但是需要手动修改分类目录的class
- */
-include 'function.py.php';
+// 拼音类库
+include 'function/function.py.php';
 
 $sp->table_name = "tools_list";
 
 if(getParam('sort')){
     //分类
   echo '<style>#choose-tool{display:none;}</style>';
-    $tools_list=$sp->findall(array("tools_type= '".getParam('sort')."'and state=0"),constant("Desc"),"*");//查询分类
+    $tools_list=$sp->findall(array("tools_type= '".addslashes(getParam('sort'))."'and state=0"),constant("Desc"),"*");//查询分类
   }elseif(getParam('query')){
     //查询工具
     echo '<style>.search-fr{display:none;}</style>';
     //查询标题
-    $tools_list=$sp->findall(array("title like '%".getParam('query')."%'"),constant("Desc"),"*");
+    $tools_list=$sp->findall(array("title like '%".addslashes(getParam('query'))."%'"),constant("Desc"),"*");
   }else{
     //默认输出所有工具
     $tools_list=$sp->findall(array('state'=>'0'),constant("Desc"),"*");
@@ -89,7 +85,7 @@ if(getParam('sort')){
           </div>';}?>
           <?php if(constant('templates')=='1'){?>
             <link rel="stylesheet" type="text/css" href="<?php echo Tools_url;?>/css/temp_one.css">
-            <?php foreach ($tools_list as $age) {if($age['type']=='0'){$toolsurl = Tools_url.'/'.Tools_t.'/'.$age['tools_url'];}else{$toolsurl = $age['tools_url'];}?>
+            <?php foreach ($tools_list as $age) {if($age['type']=='0'){$toolsurl = Tools_url.'/'.$CONF['config']['TOOLS_T'].'/'.$age['tools_url'];}else{$toolsurl = $age['tools_url'];}?>
             <div class="col-xs-12 col-sm-3 boxs tool-item <?php if($age['tools_type']){echo pinyin($age['tools_type'], 'first');}else{echo 'qt';}?> <?php echo pinyin($age['title'], 'first');?>">
               <div class="item-inner">
                 <div class="item-hd">
@@ -110,7 +106,7 @@ if(getParam('sort')){
                   </a>
                 </div>
                 <div class="item-bd">
-                  <div class="item-desc" title="<?php echo $age['explains'];?>"><?php echo $age['explains'];?></div>
+                  <div class="item-desc" title="<?php echo $age['keyword'];?>"><?php echo $age['keyword'];?></div>
                 </div>
                 <div class="item-ft">
                   <a target="_blank" class="item-link" href="<?php echo $toolsurl;?>"><?php echo $age['tools_url'];?></a>
@@ -121,26 +117,53 @@ if(getParam('sort')){
           <?php }?>
         </div>
       </div>
-    <?php }else{?>
-      <?php foreach ($tools_list as $age) {if($age['type']=='0'){$toolsurl = Tools_url.'/'.Tools_t.'/'.$age['tools_url'];}else{$toolsurl = $age['tools_url'];}?>
-      <div class="col-sm-6 col-md-4 col-lg-3 tool-item <?php if($age['tools_type']){echo pinyin($age['tools_type'], 'first');}else{echo 'qt';}?> <?php echo pinyin($age['title'], 'first');?>">
-        <a href="<?php echo $toolsurl;?>" target="_blank">
-          <div class="maple-tool-item image-shadow">
-            <span class="maple-tool-icon maple-tool-item-color<?php echo rand(1,6);?>"><?php echo mb_substr($age['title'],0,1,'utf-8');?></span>
-            <h3 class="maple-tool-name"><?php echo $age['title'];?></h3>
-            <span class="maple-tool-describe"><?php echo $age['explains'];?></span>
-            <div class="maple-tool-tags">
-              <span class="maple-tool-tag"  title="工具类型"><?php echo $age['tools_type'];?></span>
-              <span class="maple-tool-tag"  title="使用次数"><i class="fa fa-eye"></i> <?php echo $age['tools_number'];?></span>
-              <span class="maple-tool-tag"  title="点赞" onclick="ajax_love(<?php echo $age['id'];?>)" id="tools_love_<?php echo $age['id'];?>" <?php if ($_COOKIE["love_id_".$age['id']]) {echo 'style="color:red;"';}?>><i class="fa fa-heart"></i> <?php echo $age['tools_love'];?></span>
+    <?php }elseif(constant('templates')=='2'){?>
+      <link rel="stylesheet" href="css/mdui.min.css"/>
+      <script src="js/mdui.min.js"></script>
+      <style type="text/css">.mdui-col-sm-6.mdui-col-md-3 {padding-bottom: 20px;}.mdui-card:hover {    box-shadow: 0 5px 15px 0 rgb(108, 148, 186);}.mdui-card img{width: 80%;margin: 0 auto;}</style>
+      <?php foreach ($tools_list as $age) {if($age['type']=='0'){$toolsurl = Tools_url.'/'.$CONF['config']['TOOLS_T'].'/'.$age['tools_url'];}else{$toolsurl = $age['tools_url'];}?>
+      <div class="mdui-col-sm-6 mdui-col-md-3 tool-item <?php if($age['tools_type']){echo pinyin($age['tools_type'], 'first');}else{echo 'qt';}?> <?php echo pinyin($age['title'], 'first');?>">
+        <div class="mdui-card">
+          <a href="<?php echo $toolsurl;?>" target="_blank">
+            <div class="mdui-card-media">
+              <img src="<?php echo $age['tools_img'];?>"/>
+              <div class="mdui-card-media-covered">
+                <div class="mdui-card-primary">
+                  <div class="mdui-card-primary-title"><?php echo $age['title'];?></div>
+                  <div class="mdui-card-primary-subtitle"><?php echo $age['subtitle'];?></div>
+                </div>
+              </div>
             </div>
-            <span class="maple-tool-auth" title="工具作者"><i class="fa fa-user-circle-o"></i> <?php echo $age['tools_author'];?></span>
-            <span class="maple-tool-in" title="点击打开工具"><i class="fa fa-sign-in"></i> Open</span>
+          </a>
+          <div class="mdui-card-actions">
+            <button class="mdui-btn mdui-ripple"><span class="maple-tool-tag"  title="点赞" onclick="ajax_love(<?php echo $age['id'];?>)" id="tools_love_<?php echo $age['id'];?>" <?php if ($_COOKIE["love_id_".$age['id']]) {echo 'style="color:red;"';}?>><i class="fa fa-heart"></i> <?php echo $age['tools_love'];?></span></button>
+            <button class="mdui-btn mdui-ripple"><span class="maple-tool-tag"  title="使用次数"><i class="fa fa-eye"></i> <?php echo $age['tools_number'];?></span></button>
+            <button class="mdui-btn mdui-btn-icon mdui-float-right"><a href="<?php echo $toolsurl;?>" target="_blank"><span class="maple-tool-tag" title="打开"><i class="fa fa-angle-right fa-fw"></i></button></a></span>
           </div>
-        </a>
+        </div>
       </div>
     <?php }?>
   </div>
+</div>
+<?php }else{?>
+  <?php foreach ($tools_list as $age) {if($age['type']=='0'){$toolsurl = Tools_url.'/'.$CONF['config']['TOOLS_T'].'/'.$age['tools_url'];}else{$toolsurl = $age['tools_url'];}?>
+  <div class="col-sm-6 col-md-4 col-lg-3 tool-item <?php if($age['tools_type']){echo pinyin($age['tools_type'], 'first');}else{echo 'qt';}?> <?php echo pinyin($age['title'], 'first');?>">
+
+    <div class="maple-tool-item image-shadow">
+      <span class="maple-tool-icon maple-tool-item-color<?php echo rand(1,6);?>"><?php echo mb_substr($age['title'],0,1,'utf-8');?></span>
+      <a href="<?php echo $toolsurl;?>" target="_blank"><h3 class="maple-tool-name"><?php echo $age['title'];?></h3></a>
+      <span class="maple-tool-describe"><?php echo $age['keyword'];?></span>
+      <div class="maple-tool-tags">
+        <a target="_blank" rel="nofollow" href="<?php echo Tools_url;?>/?sort=<?php echo $age['tools_type'];?>"><span class="maple-tool-tag"  title="工具类型"><?php echo $age['tools_type'];?></span></a>
+        <span class="maple-tool-tag"  title="使用次数"><i class="fa fa-eye"></i> <?php echo $age['tools_number'];?></span>
+        <span class="maple-tool-tag"  title="点赞" onclick="ajax_love(<?php echo $age['id'];?>)" id="tools_love_<?php echo $age['id'];?>" <?php if ($_COOKIE["love_id_".$age['id']]) {echo 'style="color:red;"';}?>><i class="fa fa-heart"></i> <?php echo $age['tools_love'];?></span>
+      </div>
+      <span class="maple-tool-auth" title="工具作者"><i class="fa fa-user-circle-o"></i> <?php echo $age['tools_author'];?></span>
+      <a href="<?php echo $toolsurl;?>" target="_blank"><span class="maple-tool-in" title="点击打开工具"><i class="fa fa-sign-in"></i> Open</span></a>
+    </div>
+  </div>
+<?php }?>
+</div>
 </div>
 
 <?php }?>
@@ -161,22 +184,24 @@ if(getParam('sort')){
   <?php
   $sp->table_name = "tools_links";
   $tools_links = $sp->findall(array('state'=>'0','type'=>'0'),"priority desc","*");
-  ?>
-  <div class="container links_">
-    <div class="links_bt">
-      <div class="links_bt_l">
-        <a href="javascript:;">友情链接</a>
+  if($tools_links){
+    ?>
+    <div class="container links_">
+      <div class="links_bt">
+        <div class="links_bt_l">
+          <a href="javascript:;">友情链接</a>
+        </div>
+        <div class="links_bt_r">
+          <a href="<?php echo Tools_url;?>/about.php" rel="nofollow" target="_blank">申请</a>
+        </div>
       </div>
-      <div class="links_bt_r">
-        <a href="<?php echo Tools_url;?>/about.php" rel="nofollow" target="_blank">申请</a>
+      <div class="links_lb">
+        <ul>
+          <?php foreach($tools_links as $age){?>
+            <li><a href="<?php echo $age['url'];?>" title="<?php echo $age['description'];?>" target="_blank"><?php echo $age['name'];?></a></li>
+          <?php }?>
+        </ul>
       </div>
     </div>
-    <div class="links_lb">
-      <ul>
-        <?php foreach($tools_links as $age){?>
-          <li><a href="<?php echo $age['url'];?>" title="<?php echo $age['description'];?>" target="_blank"><?php echo $age['name'];?></a></li>
-        <?php }?>
-      </ul>
-    </div>
-  </div>
+  <?php }?>
   <?php include 'footer.php';?>
