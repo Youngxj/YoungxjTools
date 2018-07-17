@@ -352,7 +352,7 @@ if(getParam('domain')=='logo'&&$_FILES["file"]){
           <span class="icon">
             <i class="fa fa-envelope-open-o"></i>									
           </span>
-          <h5>防红管家smtp设置</h5>
+          <h5>评论交互smtp设置</h5>
         </div>
         <div class="widget-content nopadding">
           <form action="settings.php?domain=smtp" method="post" class="form-horizontal" name="smtp">
