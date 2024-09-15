@@ -25,19 +25,19 @@ if($miw_token){
 }
 
 if (getParam('user')&&getParam('password')) {
-  if(isset($_POST['geetest_challenge']) && isset($_POST['geetest_validate']) && isset($_POST['geetest_seccode'])){
-    $geetest = new GeetestLib();
-    $geetest->set_privatekey("2d5be5ba4207f11d33f7ae5e14a1c33e");
-    $result = $geetest->validate($_POST['geetest_challenge'], $_POST['geetest_validate'], $_POST['geetest_seccode']);
-    if ($result == TRUE) {
-    } else if ($result == FALSE) {
-     exit("<script language='javascript'>alert('登陆失败，请拖动滑块完成验证！');window.location.href='login.php';</script>");
-   } else {
-    exit("<script language='javascript'>alert('登陆失败，请拖动滑块完成验证！');window.location.href='login.php';</script>");
-  }
-}else{
-  exit("<script language='javascript'>alert('登陆失败，请拖动滑块完成验证！');window.location.href='login.php';</script>");
-}
+//   if(isset($_POST['geetest_challenge']) && isset($_POST['geetest_validate']) && isset($_POST['geetest_seccode'])){
+//     $geetest = new GeetestLib();
+//     $geetest->set_privatekey("2d5be5ba4207f11d33f7ae5e14a1c33e");
+//     $result = $geetest->validate($_POST['geetest_challenge'], $_POST['geetest_validate'], $_POST['geetest_seccode']);
+//     if ($result == TRUE) {
+//     } else if ($result == FALSE) {
+//      exit("<script language='javascript'>alert('登陆失败，请拖动滑块完成验证！');window.location.href='login.php';</script>");
+//    } else {
+//     exit("<script language='javascript'>alert('登陆失败，请拖动滑块完成验证！');window.location.href='login.php';</script>");
+//   }
+// }else{
+//   exit("<script language='javascript'>alert('登陆失败，请拖动滑块完成验证！');window.location.href='login.php';</script>");
+// }
 $user= getParam('user');
 $pass= md5(md5(getParam('password')).md5($user_token['user_token']));
 $row = $login->find(array('user'=>$user,'password'=>$pass),"","user,password");
